@@ -11,7 +11,7 @@ num_worker=0
 
 
 log_name=log.txt
-image_size=224
+image_size=256
 cont_w=1e-3
 lip_w=1e-5
 perp_w=0.07
@@ -20,8 +20,8 @@ gpu=1
 ckpt_interval=300
 # gen_checkpoint_path=/data0/hzt/exp/TalkLip/checkpoint_step000003000.pth
 
-debug="-m debugpy --listen 0.0.0.0:5678  --wait-for-client"
-# debug=''
+# debug="-m debugpy --listen 0.0.0.0:5678  --wait-for-client"
+debug=''
 
 python  -u $debug train.py --file_dir $file_list_dir \
                 --avhubert_root $avhubert_root \

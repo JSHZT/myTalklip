@@ -19,39 +19,44 @@ class TalkLip(nn.Module):
     def __init__(self, audio_encoder, audio_num, res_layers=None):
         super(TalkLip, self).__init__()
 
-        enc_channel = [6, 16, 32, 64, 128, 256, 512, 512]
+        enc_channel = [6, 16, 32, 64, 128, 256, 512, 512, 512]
 
         self.face_encoder_blocks = nn.ModuleList([
-            nn.Sequential(Conv2d(enc_channel[0], enc_channel[1], kernel_size=7, stride=1, padding=3)),  # 16, 96, 96
+            nn.Sequential(Conv2d(enc_channel[0], enc_channel[1], kernel_size=7, stride=1, padding=3)),  # 16, 256, 256
 
-            nn.Sequential(Conv2d(enc_channel[1], enc_channel[2], kernel_size=3, stride=2, padding=1),  # 32, 48, 48
+            nn.Sequential(Conv2d(enc_channel[1], enc_channel[2], kernel_size=5, stride=2, padding=2),  # 32, 128, 128
                           Conv2d(enc_channel[2], enc_channel[2], kernel_size=3, stride=1, padding=1, residual=True),
                           Conv2d(enc_channel[2], enc_channel[2], kernel_size=3, stride=1, padding=1, residual=True)),
 
-            nn.Sequential(Conv2d(enc_channel[2], enc_channel[3], kernel_size=3, stride=2, padding=1),  # 64, 24,24
+            nn.Sequential(Conv2d(enc_channel[2], enc_channel[3], kernel_size=3, stride=2, padding=1),  # 64, 64,64
                           Conv2d(enc_channel[3], enc_channel[3], kernel_size=3, stride=1, padding=1, residual=True),
                           Conv2d(enc_channel[3], enc_channel[3], kernel_size=3, stride=1, padding=1, residual=True),
                           Conv2d(enc_channel[3], enc_channel[3], kernel_size=3, stride=1, padding=1, residual=True)),
 
-            nn.Sequential(Conv2d(enc_channel[3], enc_channel[4], kernel_size=3, stride=2, padding=1),  # 128, 12,12
+            nn.Sequential(Conv2d(enc_channel[3], enc_channel[4], kernel_size=3, stride=2, padding=1),  # 128, 32,32
                           Conv2d(enc_channel[4], enc_channel[4], kernel_size=3, stride=1, padding=1, residual=True),
                           Conv2d(enc_channel[4], enc_channel[4], kernel_size=3, stride=1, padding=1, residual=True)),
 
-            nn.Sequential(Conv2d(enc_channel[4], enc_channel[5], kernel_size=3, stride=2, padding=1),  # 256, 6,6
+            nn.Sequential(Conv2d(enc_channel[4], enc_channel[5], kernel_size=3, stride=2, padding=1),  # 256, 16,16
                           Conv2d(enc_channel[5], enc_channel[5], kernel_size=3, stride=1, padding=1, residual=True),
                           Conv2d(enc_channel[5], enc_channel[5], kernel_size=3, stride=1, padding=1, residual=True)),
 
-            nn.Sequential(Conv2d(enc_channel[5], enc_channel[6], kernel_size=3, stride=2, padding=1),  # 512, 3,3
-                          Conv2d(enc_channel[6], enc_channel[6], kernel_size=3, stride=1, padding=1, residual=True), ),
+            nn.Sequential(Conv2d(enc_channel[5], enc_channel[6], kernel_size=3, stride=2, padding=1),  # 512, 8,8
+                          Conv2d(enc_channel[6], enc_channel[6], kernel_size=3, stride=1, padding=1, residual=True), 
+                          Conv2d(enc_channel[6], enc_channel[6], kernel_size=3, stride=1, padding=1, residual=True)),
 
-            nn.Sequential(Conv2d(enc_channel[6], enc_channel[7], kernel_size=3, stride=1, padding=0),  # 1, 1
-                          Conv2d(enc_channel[7], enc_channel[7], kernel_size=1, stride=1, padding=0)),
-            nn.AvgPool2d(5, stride=1),])
+            nn.Sequential(Conv2d(enc_channel[6], enc_channel[7], kernel_size=3, stride=2, padding=1),  # 512, 4,4
+                          Conv2d(enc_channel[7], enc_channel[7], kernel_size=3, stride=1, padding=1, residual=True), 
+                          Conv2d(enc_channel[7], enc_channel[7], kernel_size=3, stride=1, padding=1, residual=True)),
+                        
+            nn.Sequential(Conv2d(enc_channel[7], enc_channel[8], kernel_size=4, stride=1, padding=0),  #512， 1, 1
+                          Conv2d(enc_channel[8], enc_channel[8], kernel_size=1, stride=1, padding=0)),
+        ])
 
         self.audio_encoder = audio_encoder
         self.audio_map = nn.Linear(audio_num, enc_channel[-1])
 
-        dec_channel = [512, 512, 512, 384, 256, 128, 64]
+        dec_channel = [512, 512, 512, 256, 128, 64, 32, 32]
         upsamp_channel = []
         if res_layers is None:
             self.res_layers = len(dec_channel)
@@ -66,42 +71,38 @@ class TalkLip(nn.Module):
         self.face_decoder_blocks = nn.ModuleList([
             nn.Sequential(Conv2d(enc_channel[-1], dec_channel[0], kernel_size=1, stride=1, padding=0), ),
             
-            # nn.Sequential(Conv2dTranspose(upsamp_channel[0], dec_channel[1], kernel_size=3, stride=1, padding=0),  # 3,3
-            #               Conv2d(dec_channel[1], dec_channel[1], kernel_size=3, stride=1, padding=1, residual=True), ),
-            
-            nn.Sequential(Conv2dTranspose(upsamp_channel[0], dec_channel[1], kernel_size=5, stride=1, padding=0),  # 5,5  自添加的
-                          Conv2d(dec_channel[1], dec_channel[1], kernel_size=3, stride=1, padding=1, residual=True), ),
-
-            nn.Sequential(Conv2dTranspose(upsamp_channel[0], dec_channel[1], kernel_size=3, stride=1, padding=0),  # 7,7  自添加的
+            nn.Sequential(Conv2dTranspose(upsamp_channel[0], dec_channel[1], kernel_size=4, stride=1, padding=0),  # 4,4
                           Conv2d(dec_channel[1], dec_channel[1], kernel_size=3, stride=1, padding=1, residual=True), ),
 
             nn.Sequential(Conv2dTranspose(upsamp_channel[1], dec_channel[2], kernel_size=3, stride=2, padding=1, output_padding=1),
                           Conv2d(dec_channel[2], dec_channel[2], kernel_size=3, stride=1, padding=1, residual=True),
-                          Conv2d(dec_channel[2], dec_channel[2], kernel_size=3, stride=1, padding=1, residual=True), ),  # 6, 6
+                          Conv2d(dec_channel[2], dec_channel[2], kernel_size=3, stride=1, padding=1, residual=True), ),  # 8, 8
 
             nn.Sequential(Conv2dTranspose(upsamp_channel[2], dec_channel[3], kernel_size=3, stride=2, padding=1, output_padding=1),
                           Conv2d(dec_channel[3], dec_channel[3], kernel_size=3, stride=1, padding=1, residual=True),
-                          Conv2d(dec_channel[3], dec_channel[3], kernel_size=3, stride=1, padding=1, residual=True), ),  # 12, 12
+                          Conv2d(dec_channel[3], dec_channel[3], kernel_size=3, stride=1, padding=1, residual=True), ),  # 16, 16
 
             nn.Sequential(Conv2dTranspose(upsamp_channel[3], dec_channel[4], kernel_size=3, stride=2, padding=1, output_padding=1),
                           Conv2d(dec_channel[4], dec_channel[4], kernel_size=3, stride=1, padding=1, residual=True),
-                          Conv2d(dec_channel[4], dec_channel[4], kernel_size=3, stride=1, padding=1, residual=True), ),  # 24, 24
+                          Conv2d(dec_channel[4], dec_channel[4], kernel_size=3, stride=1, padding=1, residual=True), ),  # 32, 32
 
             nn.Sequential(Conv2dTranspose(upsamp_channel[4], dec_channel[5], kernel_size=3, stride=2, padding=1, output_padding=1),
                           Conv2d(dec_channel[5], dec_channel[5], kernel_size=3, stride=1, padding=1, residual=True),
-                          Conv2d(dec_channel[5], dec_channel[5], kernel_size=3, stride=1, padding=1, residual=True), ),  # 48, 48
+                          Conv2d(dec_channel[5], dec_channel[5], kernel_size=3, stride=1, padding=1, residual=True), ),  # 64, 64
 
             nn.Sequential(Conv2dTranspose(upsamp_channel[5], dec_channel[6], kernel_size=3, stride=2, padding=1, output_padding=1),
                           Conv2d(dec_channel[6], dec_channel[6], kernel_size=3, stride=1, padding=1, residual=True),
-                          Conv2d(dec_channel[6], dec_channel[6], kernel_size=3, stride=1, padding=1, residual=True), ), ])  # 96,96
+                          Conv2d(dec_channel[6], dec_channel[6], kernel_size=3, stride=1, padding=1, residual=True), ),  # 128,128
+            
+            nn.Sequential(Conv2dTranspose(upsamp_channel[6], dec_channel[7], kernel_size=3, stride=2, padding=1, output_padding=1),
+                          Conv2d(dec_channel[7], dec_channel[7], kernel_size=3, stride=1, padding=1, residual=True),
+                          Conv2d(dec_channel[7], dec_channel[7], kernel_size=3, stride=1, padding=1, residual=True), ),  # 256, 256
+            ]) 
 
-        # self.output_block = nn.Sequential(Conv2d(upsamp_channel[6], 32, kernel_size=3, stride=1, padding=1),
-        #                                   nn.Conv2d(32, 3, kernel_size=1, stride=1, padding=0),
-        #                                   nn.Sigmoid())
+        self.output_block = nn.Sequential(Conv2d(upsamp_channel[7], 32, kernel_size=3, stride=1, padding=1),
+                                          nn.Conv2d(32, 3, kernel_size=1, stride=1, padding=0),
+                                          nn.Sigmoid())
         
-        self.output_block = nn.Sequential(Conv2d(64, 32, kernel_size=3, stride=1, padding=1),
-                                    nn.Conv2d(32, 3, kernel_size=1, stride=1, padding=0),
-                                    nn.Sigmoid())
         self.ft = False
         self.sync_net = av_sync(audio_num, audio_num)
 
@@ -163,24 +164,27 @@ class TalkLip_disc_qual(nn.Module):
         super(TalkLip_disc_qual, self).__init__()
 
         self.face_encoder_blocks = nn.ModuleList([
-            nn.Sequential(nonorm_Conv2d(3, 32, kernel_size=7, stride=1, padding=3)),  # 48,96
+            nn.Sequential(nonorm_Conv2d(3, 32, kernel_size=7, stride=1, padding=3)),  # 128,256
 
-            nn.Sequential(nonorm_Conv2d(32, 64, kernel_size=5, stride=(1, 2), padding=2),  # 48,48
+            nn.Sequential(nonorm_Conv2d(32, 64, kernel_size=5, stride=(1, 2), padding=2),  # 128,128
                           nonorm_Conv2d(64, 64, kernel_size=5, stride=1, padding=2)),
 
-            nn.Sequential(nonorm_Conv2d(64, 128, kernel_size=5, stride=2, padding=2),  # 24,24
+            nn.Sequential(nonorm_Conv2d(64, 128, kernel_size=5, stride=2, padding=2),  # 64,64
                           nonorm_Conv2d(128, 128, kernel_size=5, stride=1, padding=2)),
 
-            nn.Sequential(nonorm_Conv2d(128, 256, kernel_size=5, stride=2, padding=2),  # 12,12
+            nn.Sequential(nonorm_Conv2d(128, 256, kernel_size=5, stride=2, padding=2),  # 32,32
                           nonorm_Conv2d(256, 256, kernel_size=5, stride=1, padding=2)),
 
-            nn.Sequential(nonorm_Conv2d(256, 512, kernel_size=3, stride=2, padding=1),  # 6,6
+            nn.Sequential(nonorm_Conv2d(256, 512, kernel_size=3, stride=2, padding=1),  # 16,16
                           nonorm_Conv2d(512, 512, kernel_size=3, stride=1, padding=1)),
 
-            nn.Sequential(nonorm_Conv2d(512, 512, kernel_size=3, stride=2, padding=1),  # 3,3
+            nn.Sequential(nonorm_Conv2d(512, 512, kernel_size=3, stride=2, padding=1),  # 8,8
+                          nonorm_Conv2d(512, 512, kernel_size=3, stride=1, padding=1), ),
+            
+            nn.Sequential(nonorm_Conv2d(512, 512, kernel_size=3, stride=2, padding=1),  # 4,4
                           nonorm_Conv2d(512, 512, kernel_size=3, stride=1, padding=1), ),
 
-            nn.Sequential(nonorm_Conv2d(512, 512, kernel_size=3, stride=1, padding=0),  # 1, 1
+            nn.Sequential(nonorm_Conv2d(512, 512, kernel_size=4, stride=1, padding=0),  # 1, 1
                           nonorm_Conv2d(512, 512, kernel_size=1, stride=1, padding=0)), ])
 
         self.binary_pred = nn.Sequential(nn.Conv2d(512, 1, kernel_size=1, stride=1, padding=0), nn.Sigmoid())
