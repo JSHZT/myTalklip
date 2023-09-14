@@ -453,7 +453,9 @@ def train(device, model, avhubert, criterion, data_loader, optimizer, args, glob
     model['gen'].ft = False
     status = status_manager(5)
     recon_loss = nn.L1Loss()
-
+    accumulation_steps = args.accumulation_steps
+    for key in optimizer.keys():
+        optimizer[key].zero_grad()
     for epoch in range(args.n_epoch):
         losses = {'lip': 0, 'local_sync': 0, 'l1': 0, 'prec_g': 0, 'disc_real_g': 0, 'disc_fake_g': 0}
         prog_bar = tqdm(enumerate(data_loader['train']))
@@ -469,9 +471,6 @@ def train(device, model, avhubert, criterion, data_loader, optimizer, args, glob
             inpim, gtim = inpim.to(device), gtim.to(device)
             trgt, prev_trg = trgt.to(device), prev_trg.to(device)
             spectrogram, padding_mask = spectrogram.to(device), padding_mask.to(device)
-
-            for key in optimizer.keys():
-                optimizer[key].zero_grad()
 
             net_input = {'source': {'audio': spectrogram, 'video': None}, 'padding_mask': padding_mask, 'prev_output_tokens': prev_trg}
             sample = {'net_input': net_input, 'target_lengths': tlen, 'ntokens': ntoken, 'target': trgt}
@@ -504,18 +503,16 @@ def train(device, model, avhubert, criterion, data_loader, optimizer, args, glob
                 losses['l1'] += l1loss.item()
 
                 loss = args.lip_w * lip_loss + args.perp_w * perceptual_loss + (1. - args.lip_w - args.perp_w) * l1loss + args.cont_w * local_sync
-
                 loss.backward()
-                optimizer['gen'].step()
 
-                ### Remove all gradients before Training disc
-                optimizer['gen'].zero_grad()
+                # ### Remove all gradients before Training disc
+                # optimizer['gen'].zero_grad()
 
                 pred = model['disc'](gtim)
                 disc_real_loss = F.binary_cross_entropy(pred, torch.ones((len(pred), 1)).to(device))
                 losses['disc_real_g'] += disc_real_loss.item()
 
-                pred = model['disc'](syntim.detach())
+                pred = model['disc'](syntim.clone().detach())
                 disc_fake_loss = F.binary_cross_entropy(pred, torch.zeros((len(pred), 1)).to(device))
                 losses['disc_fake_g'] += disc_fake_loss.item()
 
@@ -523,7 +520,12 @@ def train(device, model, avhubert, criterion, data_loader, optimizer, args, glob
                 disc_loss.backward()
 
                 # torch.nn.utils.clip_grad_norm_(model.parameters(), 5.)
-                optimizer['disc'].step()
+                if (step+1) % accumulation_steps == 0:
+                    optimizer['gen'].step()
+                    optimizer['gen'].zero_grad()
+
+                    optimizer['disc'].step()
+                    optimizer['disc'].zero_grad()
 
                 if global_step % args.ckpt_interval == 0:
                     save_sample_images(inpim, syntim, gtim, global_step, args.checkpoint_dir)
@@ -722,6 +724,7 @@ if __name__ == "__main__":
     parser.add_argument('--gpu', help='index of gpu used', default=0, type=int)
     parser.add_argument('--n_epoch', help='number of epoch', default=100, type=int)
     parser.add_argument('--log_name', help='name of a log file', default='talklip', type=str)
+    parser.add_argument('--accumulation_steps', default=8, type=int)
     parser.add_argument('--ckpt_interval', help='The interval of saving a checkpoint', default=3000, type=int)
 
     args = parser.parse_args()
@@ -752,6 +755,7 @@ if __name__ == "__main__":
     logger = init_logging(log_name='log/{}.log'.format(args.log_name))
 
     global_step = 0
+    print(args.gen_checkpoint_path)
     if args.gen_checkpoint_path is not None:
         global_step = load_checkpoint(args.gen_checkpoint_path, imGen, optimizer, logger)
 

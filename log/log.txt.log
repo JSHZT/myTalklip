@@ -610,3 +610,350 @@
 2023-09-02 09:52:59,663 - root - INFO - 
 
 2023-09-02 09:52:59,663 - root - INFO - Training done
+2023-09-12 18:00:28,370 - root - INFO - Train step: 300 lip: 0.0000 local_sync: 0.0000 l1: 0.1426 prec_g: 0.0584 disc_real_g: 0.0573 disc_fake_g: 90.4001 | gpu: 23786 | lr: 0.0001
+2023-09-12 18:00:28,370 - root - INFO - Valid step: 300 lip: 21.6006 local_sync: 12.7022 l1: 0.0900 prec_g: 0.0000 disc_real_g: 0.0000 disc_fake_g: 100.0000 | wer: 0.9823376623376623
+2023-09-12 18:00:28,370 - root - INFO - 
+
+2023-09-12 18:20:02,153 - root - INFO - Train step: 600 lip: 0.0000 local_sync: 0.0000 l1: 0.1262 prec_g: 0.0292 disc_real_g: 0.0287 disc_fake_g: 95.0334 | gpu: 23786 | lr: 0.0001
+2023-09-12 18:20:02,153 - root - INFO - Valid step: 600 lip: 21.7395 local_sync: 12.6918 l1: 0.0645 prec_g: 0.0000 disc_real_g: 0.0000 disc_fake_g: 100.0000 | wer: 0.9877056277056278
+2023-09-12 18:20:02,153 - root - INFO - 
+
+2023-09-12 18:41:08,888 - root - INFO - Train step: 300 lip: 0.0000 local_sync: 0.0000 l1: 0.1385 prec_g: 0.0445 disc_real_g: 0.0428 disc_fake_g: 93.3815 | gpu: 19566 | lr: 0.0001
+2023-09-12 18:41:08,889 - root - INFO - Valid step: 300 lip: 21.6874 local_sync: 12.4535 l1: 0.0791 prec_g: 0.0000 disc_real_g: 0.0000 disc_fake_g: 100.0000 | wer: 0.9854545454545455
+2023-09-12 18:41:08,889 - root - INFO - 
+
+2023-09-12 18:59:36,206 - root - INFO - Train step: 600 lip: 0.0000 local_sync: 0.0000 l1: 0.1214 prec_g: 0.0222 disc_real_g: 0.0214 disc_fake_g: 96.1907 | gpu: 23756 | lr: 0.0001
+2023-09-12 18:59:36,206 - root - INFO - Valid step: 600 lip: 21.8557 local_sync: 12.4298 l1: 0.0892 prec_g: 0.0000 disc_real_g: 0.0000 disc_fake_g: 100.0000 | wer: 0.9897835497835498
+2023-09-12 18:59:36,206 - root - INFO - 
+
+2023-09-12 19:19:06,790 - root - INFO - Train step: 900 lip: 0.0000 local_sync: 0.0000 l1: 0.1143 prec_g: 0.0148 disc_real_g: 0.0143 disc_fake_g: 97.2383 | gpu: 23998 | lr: 0.0001
+2023-09-12 19:19:06,791 - root - INFO - Valid step: 900 lip: 21.8628 local_sync: 12.4363 l1: 0.0578 prec_g: 0.0000 disc_real_g: 0.0000 disc_fake_g: 100.0000 | wer: 0.9904761904761905
+2023-09-12 19:19:06,791 - root - INFO - 
+
+2023-09-12 19:37:48,707 - root - INFO - Train step: 1200 lip: 0.0000 local_sync: 0.0000 l1: 0.1086 prec_g: 0.0111 disc_real_g: 0.0107 disc_fake_g: 97.8454 | gpu: 23996 | lr: 0.0001
+2023-09-12 19:37:48,708 - root - INFO - Valid step: 1200 lip: 21.8715 local_sync: 12.4308 l1: 0.0634 prec_g: 0.0000 disc_real_g: 0.0000 disc_fake_g: 100.0000 | wer: 0.9913419913419913
+2023-09-12 19:37:48,708 - root - INFO - 
+
+2023-09-12 19:57:34,324 - root - INFO - Train step: 1500 lip: 0.0000 local_sync: 0.0000 l1: 0.1034 prec_g: 0.0089 disc_real_g: 0.0086 disc_fake_g: 98.1430 | gpu: 24036 | lr: 0.0001
+2023-09-12 19:57:34,324 - root - INFO - Valid step: 1500 lip: 21.8573 local_sync: 12.4454 l1: 0.0599 prec_g: 0.0000 disc_real_g: 0.0000 disc_fake_g: 100.0000 | wer: 0.9901298701298701
+2023-09-12 19:57:34,324 - root - INFO - 
+
+2023-09-12 20:16:29,576 - root - INFO - Train step: 1800 lip: 0.0000 local_sync: 0.0000 l1: 0.0991 prec_g: 0.0074 disc_real_g: 0.0071 disc_fake_g: 98.3969 | gpu: 22924 | lr: 0.0001
+2023-09-12 20:16:29,576 - root - INFO - Valid step: 1800 lip: 22.0770 local_sync: 12.4539 l1: 0.0533 prec_g: 0.0000 disc_real_g: 0.0000 disc_fake_g: 100.0000 | wer: 0.9939393939393939
+2023-09-12 20:16:29,576 - root - INFO - 
+
+2023-09-12 20:36:00,749 - root - INFO - Train step: 2100 lip: 0.0000 local_sync: 0.0000 l1: 0.0952 prec_g: 0.0064 disc_real_g: 0.0061 disc_fake_g: 98.5307 | gpu: 23854 | lr: 0.0001
+2023-09-12 20:36:00,749 - root - INFO - Valid step: 2100 lip: 22.0624 local_sync: 12.4409 l1: 0.0567 prec_g: 0.0000 disc_real_g: 0.0000 disc_fake_g: 100.0000 | wer: 0.9941125541125541
+2023-09-12 20:36:00,749 - root - INFO - 
+
+2023-09-12 20:54:17,321 - root - INFO - Train step: 2400 lip: 0.0000 local_sync: 0.0000 l1: 0.0921 prec_g: 0.0056 disc_real_g: 0.0053 disc_fake_g: 98.6310 | gpu: 24188 | lr: 0.0001
+2023-09-12 20:54:17,322 - root - INFO - Valid step: 2400 lip: 22.0237 local_sync: 12.4325 l1: 0.0604 prec_g: 0.0000 disc_real_g: 0.0000 disc_fake_g: 100.0000 | wer: 0.992900432900433
+2023-09-12 20:54:17,322 - root - INFO - 
+
+2023-09-12 21:11:56,109 - root - INFO - Train step: 2700 lip: 0.0000 local_sync: 0.0000 l1: 0.0895 prec_g: 0.0049 disc_real_g: 0.0048 disc_fake_g: 98.7091 | gpu: 23742 | lr: 0.0001
+2023-09-12 21:11:56,109 - root - INFO - Valid step: 2700 lip: 22.2209 local_sync: 12.4688 l1: 0.0546 prec_g: 0.0000 disc_real_g: 0.0000 disc_fake_g: 100.0000 | wer: 0.9941125541125541
+2023-09-12 21:11:56,109 - root - INFO - 
+
+2023-09-12 21:31:33,025 - root - INFO - Train step: 3000 lip: 0.0000 local_sync: 0.0000 l1: 0.0873 prec_g: 0.0044 disc_real_g: 0.0043 disc_fake_g: 98.7382 | gpu: 23742 | lr: 0.0001
+2023-09-12 21:31:33,025 - root - INFO - Valid step: 3000 lip: 22.0066 local_sync: 12.4340 l1: 0.0528 prec_g: 0.0000 disc_real_g: 0.0000 disc_fake_g: 100.0000 | wer: 0.9941125541125541
+2023-09-12 21:31:33,025 - root - INFO - 
+
+2023-09-12 21:50:47,194 - root - INFO - Train step: 3300 lip: 0.0000 local_sync: 0.0000 l1: 0.0853 prec_g: 0.0040 disc_real_g: 0.0039 disc_fake_g: 98.8226 | gpu: 23770 | lr: 0.0001
+2023-09-12 21:50:47,194 - root - INFO - Valid step: 3300 lip: 22.0702 local_sync: 12.4290 l1: 0.0562 prec_g: 0.0000 disc_real_g: 0.0000 disc_fake_g: 100.0000 | wer: 0.9934199134199134
+2023-09-12 21:50:47,194 - root - INFO - 
+
+2023-09-12 22:09:26,706 - root - INFO - Train step: 3600 lip: 0.0000 local_sync: 0.0000 l1: 0.0835 prec_g: 0.0037 disc_real_g: 0.0036 disc_fake_g: 98.8651 | gpu: 23770 | lr: 0.0001
+2023-09-12 22:09:26,706 - root - INFO - Valid step: 3600 lip: 21.9776 local_sync: 12.4395 l1: 0.0660 prec_g: 0.0000 disc_real_g: 0.0000 disc_fake_g: 100.0000 | wer: 0.9897835497835498
+2023-09-12 22:09:26,706 - root - INFO - 
+
+2023-09-12 22:28:15,712 - root - INFO - Train step: 3900 lip: 0.0000 local_sync: 0.0000 l1: 0.0821 prec_g: 0.0034 disc_real_g: 0.0033 disc_fake_g: 98.9524 | gpu: 23886 | lr: 0.0001
+2023-09-12 22:28:15,713 - root - INFO - Valid step: 3900 lip: 22.1570 local_sync: 12.4399 l1: 0.0545 prec_g: 0.0000 disc_real_g: 0.0000 disc_fake_g: 100.0000 | wer: 0.9927272727272727
+2023-09-12 22:28:15,713 - root - INFO - 
+
+2023-09-12 22:46:44,526 - root - INFO - Train step: 4200 lip: 0.0000 local_sync: 0.0000 l1: 0.0805 prec_g: 0.0032 disc_real_g: 0.0031 disc_fake_g: 98.9796 | gpu: 23850 | lr: 0.0001
+2023-09-12 22:46:44,526 - root - INFO - Valid step: 4200 lip: 22.1771 local_sync: 12.4519 l1: 0.0503 prec_g: 0.0000 disc_real_g: 0.0000 disc_fake_g: 100.0000 | wer: 0.9925541125541125
+2023-09-12 22:46:44,526 - root - INFO - 
+
+2023-09-12 23:05:36,778 - root - INFO - Train step: 4500 lip: 0.0000 local_sync: 0.0000 l1: 0.0793 prec_g: 0.0030 disc_real_g: 0.0029 disc_fake_g: 99.0254 | gpu: 23850 | lr: 0.0001
+2023-09-12 23:05:36,778 - root - INFO - Valid step: 4500 lip: 22.1624 local_sync: 12.4437 l1: 0.0537 prec_g: 0.0000 disc_real_g: 0.0000 disc_fake_g: 100.0000 | wer: 0.9930735930735931
+2023-09-12 23:05:36,778 - root - INFO - 
+
+2023-09-12 23:24:39,587 - root - INFO - Train step: 4800 lip: 0.0000 local_sync: 0.0000 l1: 0.0781 prec_g: 0.0028 disc_real_g: 0.0027 disc_fake_g: 99.0655 | gpu: 23850 | lr: 0.0001
+2023-09-12 23:24:39,587 - root - INFO - Valid step: 4800 lip: 22.1910 local_sync: 12.4624 l1: 0.0493 prec_g: 0.0000 disc_real_g: 0.0000 disc_fake_g: 100.0000 | wer: 0.9935930735930736
+2023-09-12 23:24:39,587 - root - INFO - 
+
+2023-09-12 23:42:53,371 - root - INFO - Train step: 5100 lip: 0.0000 local_sync: 0.0000 l1: 0.0771 prec_g: 0.0026 disc_real_g: 0.0025 disc_fake_g: 99.1009 | gpu: 23850 | lr: 0.0001
+2023-09-12 23:42:53,371 - root - INFO - Valid step: 5100 lip: 22.2394 local_sync: 12.4552 l1: 0.0482 prec_g: 0.0000 disc_real_g: 0.0000 disc_fake_g: 100.0000 | wer: 0.9937662337662337
+2023-09-12 23:42:53,371 - root - INFO - 
+
+2023-09-13 00:02:04,847 - root - INFO - Train step: 5400 lip: 0.0000 local_sync: 0.0000 l1: 0.0762 prec_g: 0.0025 disc_real_g: 0.0024 disc_fake_g: 99.1138 | gpu: 23900 | lr: 0.0001
+2023-09-13 00:02:04,847 - root - INFO - Valid step: 5400 lip: 22.0699 local_sync: 12.4056 l1: 0.0506 prec_g: 0.0000 disc_real_g: 0.0000 disc_fake_g: 100.0000 | wer: 0.9925541125541125
+2023-09-13 00:02:04,847 - root - INFO - 
+
+2023-09-13 00:21:16,355 - root - INFO - Train step: 5700 lip: 0.0000 local_sync: 0.0000 l1: 0.0752 prec_g: 0.0023 disc_real_g: 0.0023 disc_fake_g: 99.1429 | gpu: 23902 | lr: 0.0001
+2023-09-13 00:21:16,355 - root - INFO - Valid step: 5700 lip: 22.2324 local_sync: 12.4416 l1: 0.0527 prec_g: 0.0000 disc_real_g: 0.0000 disc_fake_g: 100.0000 | wer: 0.9930735930735931
+2023-09-13 00:21:16,355 - root - INFO - 
+
+2023-09-13 00:40:19,063 - root - INFO - Train step: 6000 lip: 0.0000 local_sync: 0.0000 l1: 0.0745 prec_g: 0.0022 disc_real_g: 0.0021 disc_fake_g: 99.1691 | gpu: 23900 | lr: 0.0001
+2023-09-13 00:40:19,063 - root - INFO - Valid step: 6000 lip: 22.0419 local_sync: 12.4073 l1: 0.0567 prec_g: 0.0000 disc_real_g: 0.0000 disc_fake_g: 100.0000 | wer: 0.9927272727272727
+2023-09-13 00:40:19,063 - root - INFO - 
+
+2023-09-13 00:59:29,144 - root - INFO - Train step: 6300 lip: 0.0000 local_sync: 0.0000 l1: 0.0737 prec_g: 0.0021 disc_real_g: 0.0020 disc_fake_g: 99.1610 | gpu: 23900 | lr: 0.0001
+2023-09-13 00:59:29,144 - root - INFO - Valid step: 6300 lip: 22.1972 local_sync: 12.4414 l1: 0.0562 prec_g: 0.0000 disc_real_g: 0.0000 disc_fake_g: 100.0000 | wer: 0.9935930735930736
+2023-09-13 00:59:29,144 - root - INFO - 
+
+2023-09-13 01:18:04,615 - root - INFO - Train step: 6600 lip: 0.0000 local_sync: 0.0000 l1: 0.0729 prec_g: 0.0020 disc_real_g: 0.0019 disc_fake_g: 99.1689 | gpu: 23900 | lr: 0.0001
+2023-09-13 01:18:04,615 - root - INFO - Valid step: 6600 lip: 22.0976 local_sync: 12.4233 l1: 0.0528 prec_g: 0.0000 disc_real_g: 0.0000 disc_fake_g: 100.0000 | wer: 0.9935930735930736
+2023-09-13 01:18:04,615 - root - INFO - 
+
+2023-09-13 01:36:52,021 - root - INFO - Train step: 6900 lip: 0.0000 local_sync: 0.0000 l1: 0.0722 prec_g: 0.0019 disc_real_g: 0.0019 disc_fake_g: 99.2050 | gpu: 24018 | lr: 0.0001
+2023-09-13 01:36:52,021 - root - INFO - Valid step: 6900 lip: 22.2436 local_sync: 12.4499 l1: 0.0468 prec_g: 0.0000 disc_real_g: 0.0000 disc_fake_g: 100.0000 | wer: 0.9939393939393939
+2023-09-13 01:36:52,021 - root - INFO - 
+
+2023-09-13 01:56:07,536 - root - INFO - Train step: 7200 lip: 0.0000 local_sync: 0.0000 l1: 0.0715 prec_g: 0.0019 disc_real_g: 0.0018 disc_fake_g: 99.2103 | gpu: 23900 | lr: 0.0001
+2023-09-13 01:56:07,536 - root - INFO - Valid step: 7200 lip: 22.2418 local_sync: 12.4438 l1: 0.0456 prec_g: 0.0000 disc_real_g: 0.0000 disc_fake_g: 100.0000 | wer: 0.9942857142857143
+2023-09-13 01:56:07,536 - root - INFO - 
+
+2023-09-13 02:15:11,718 - root - INFO - Train step: 7500 lip: 0.0000 local_sync: 0.0000 l1: 0.0710 prec_g: 0.0018 disc_real_g: 0.0017 disc_fake_g: 99.2286 | gpu: 23900 | lr: 0.0001
+2023-09-13 02:15:11,719 - root - INFO - Valid step: 7500 lip: 21.9796 local_sync: 12.4057 l1: 0.0712 prec_g: 0.0000 disc_real_g: 0.0000 disc_fake_g: 100.0000 | wer: 0.9906493506493507
+2023-09-13 02:15:11,719 - root - INFO - 
+
+2023-09-13 02:34:21,886 - root - INFO - Train step: 7800 lip: 0.0000 local_sync: 0.0000 l1: 0.0703 prec_g: 0.0017 disc_real_g: 0.0016 disc_fake_g: 99.2198 | gpu: 23020 | lr: 0.0001
+2023-09-13 02:34:21,886 - root - INFO - Valid step: 7800 lip: 21.9772 local_sync: 12.3890 l1: 0.0592 prec_g: 0.0000 disc_real_g: 0.0000 disc_fake_g: 100.0000 | wer: 0.9927272727272727
+2023-09-13 02:34:21,886 - root - INFO - 
+
+2023-09-13 02:52:55,089 - root - INFO - Train step: 8100 lip: 0.0000 local_sync: 0.0000 l1: 0.0697 prec_g: 0.0016 disc_real_g: 0.0016 disc_fake_g: 99.2487 | gpu: 23136 | lr: 0.0001
+2023-09-13 02:52:55,089 - root - INFO - Valid step: 8100 lip: 22.0893 local_sync: 12.4247 l1: 0.0499 prec_g: 0.0000 disc_real_g: 0.0000 disc_fake_g: 100.0000 | wer: 0.992900432900433
+2023-09-13 02:52:55,089 - root - INFO - 
+
+2023-09-13 03:12:11,392 - root - INFO - Train step: 8400 lip: 0.0000 local_sync: 0.0000 l1: 0.0691 prec_g: 0.0016 disc_real_g: 0.0015 disc_fake_g: 99.2517 | gpu: 23002 | lr: 0.0001
+2023-09-13 03:12:11,392 - root - INFO - Valid step: 8400 lip: 22.1584 local_sync: 12.4201 l1: 0.0509 prec_g: 0.0000 disc_real_g: 0.0000 disc_fake_g: 100.0000 | wer: 0.9934199134199134
+2023-09-13 03:12:11,392 - root - INFO - 
+
+2023-09-13 03:29:51,879 - root - INFO - Train step: 8700 lip: 0.0000 local_sync: 0.0000 l1: 0.0685 prec_g: 0.0015 disc_real_g: 0.0015 disc_fake_g: 99.2660 | gpu: 24044 | lr: 0.0001
+2023-09-13 03:29:51,879 - root - INFO - Valid step: 8700 lip: 22.2725 local_sync: 12.4567 l1: 0.0497 prec_g: 0.0000 disc_real_g: 0.0000 disc_fake_g: 100.0000 | wer: 0.9939393939393939
+2023-09-13 03:29:51,879 - root - INFO - 
+
+2023-09-13 03:49:20,561 - root - INFO - Train step: 9000 lip: 0.0000 local_sync: 0.0000 l1: 0.0679 prec_g: 0.0015 disc_real_g: 0.0014 disc_fake_g: 99.2572 | gpu: 24122 | lr: 0.0001
+2023-09-13 03:49:20,561 - root - INFO - Valid step: 9000 lip: 22.1212 local_sync: 12.4145 l1: 0.0486 prec_g: 0.0000 disc_real_g: 0.0000 disc_fake_g: 100.0000 | wer: 0.9925541125541125
+2023-09-13 03:49:20,561 - root - INFO - 
+
+2023-09-13 03:49:20,561 - root - INFO - Audio encoder start to finetune
+2023-09-13 03:49:20,561 - root - INFO - 
+
+2023-09-13 04:08:55,783 - root - INFO - Train step: 9300 lip: 0.0000 local_sync: 0.0000 l1: 0.0674 prec_g: 0.0014 disc_real_g: 0.0014 disc_fake_g: 99.2704 | gpu: 23886 | lr: 0.0001
+2023-09-13 04:08:55,784 - root - INFO - Valid step: 9300 lip: 22.3900 local_sync: 12.5587 l1: 0.0454 prec_g: 0.0000 disc_real_g: 0.0000 disc_fake_g: 100.0000 | wer: 0.992900432900433
+2023-09-13 04:08:55,784 - root - INFO - 
+
+2023-09-13 04:28:13,360 - root - INFO - Train step: 9600 lip: 0.0000 local_sync: 0.0000 l1: 0.0670 prec_g: 0.0014 disc_real_g: 0.0013 disc_fake_g: 99.2932 | gpu: 21742 | lr: 0.0001
+2023-09-13 04:28:13,361 - root - INFO - Valid step: 9600 lip: 22.0028 local_sync: 12.4279 l1: 0.0511 prec_g: 0.0000 disc_real_g: 0.0000 disc_fake_g: 100.0000 | wer: 0.9913419913419913
+2023-09-13 04:28:13,361 - root - INFO - 
+
+2023-09-13 04:46:54,336 - root - INFO - Train step: 9900 lip: 0.0000 local_sync: 0.0000 l1: 0.0665 prec_g: 0.0013 disc_real_g: 0.0013 disc_fake_g: 99.2944 | gpu: 23944 | lr: 0.0001
+2023-09-13 04:46:54,337 - root - INFO - Valid step: 9900 lip: 22.2557 local_sync: 12.4489 l1: 0.0505 prec_g: 0.0000 disc_real_g: 0.0000 disc_fake_g: 100.0000 | wer: 0.9935930735930736
+2023-09-13 04:46:54,337 - root - INFO - 
+
+2023-09-13 05:05:11,965 - root - INFO - Train step: 10200 lip: 0.0000 local_sync: 0.0000 l1: 0.0661 prec_g: 0.0013 disc_real_g: 0.0013 disc_fake_g: 99.3053 | gpu: 24022 | lr: 0.0001
+2023-09-13 05:05:11,965 - root - INFO - Valid step: 10200 lip: 22.1470 local_sync: 12.4301 l1: 0.0469 prec_g: 0.0000 disc_real_g: 0.0000 disc_fake_g: 100.0000 | wer: 0.992034632034632
+2023-09-13 05:05:11,965 - root - INFO - 
+
+2023-09-13 05:23:31,287 - root - INFO - Train step: 10500 lip: 0.0000 local_sync: 0.0000 l1: 0.0657 prec_g: 0.0013 disc_real_g: 0.0012 disc_fake_g: 99.3157 | gpu: 24024 | lr: 0.0001
+2023-09-13 05:23:31,287 - root - INFO - Valid step: 10500 lip: 22.2004 local_sync: 12.5220 l1: 0.0585 prec_g: 0.0000 disc_real_g: 0.0000 disc_fake_g: 100.0000 | wer: 0.992034632034632
+2023-09-13 05:23:31,287 - root - INFO - 
+
+2023-09-13 05:42:12,750 - root - INFO - Train step: 10800 lip: 0.0000 local_sync: 0.0000 l1: 0.0652 prec_g: 0.0012 disc_real_g: 0.0012 disc_fake_g: 99.3347 | gpu: 24122 | lr: 0.0001
+2023-09-13 05:42:12,750 - root - INFO - Valid step: 10800 lip: 22.0529 local_sync: 12.5207 l1: 0.0450 prec_g: 0.0000 disc_real_g: 0.0000 disc_fake_g: 100.0000 | wer: 0.992034632034632
+2023-09-13 05:42:12,750 - root - INFO - 
+
+2023-09-13 05:59:24,329 - root - INFO - Train step: 11100 lip: 0.0000 local_sync: 0.0000 l1: 0.0648 prec_g: 0.0012 disc_real_g: 0.0012 disc_fake_g: 99.3436 | gpu: 24024 | lr: 0.0001
+2023-09-13 05:59:24,329 - root - INFO - Valid step: 11100 lip: 22.2855 local_sync: 12.6467 l1: 0.0461 prec_g: 0.0000 disc_real_g: 0.0000 disc_fake_g: 100.0000 | wer: 0.9937662337662337
+2023-09-13 05:59:24,329 - root - INFO - 
+
+2023-09-13 06:16:31,396 - root - INFO - Train step: 11400 lip: 0.0000 local_sync: 0.0000 l1: 0.0643 prec_g: 0.0012 disc_real_g: 0.0011 disc_fake_g: 99.3434 | gpu: 23662 | lr: 0.0001
+2023-09-13 06:16:31,397 - root - INFO - Valid step: 11400 lip: 22.1704 local_sync: 12.5830 l1: 0.0451 prec_g: 0.0000 disc_real_g: 0.0000 disc_fake_g: 100.0000 | wer: 0.9937662337662337
+2023-09-13 06:16:31,397 - root - INFO - 
+
+2023-09-13 06:35:06,147 - root - INFO - Train step: 11700 lip: 0.0000 local_sync: 0.0000 l1: 0.0640 prec_g: 0.0011 disc_real_g: 0.0011 disc_fake_g: 99.3602 | gpu: 23762 | lr: 0.0001
+2023-09-13 06:35:06,147 - root - INFO - Valid step: 11700 lip: 22.1020 local_sync: 12.6137 l1: 0.0463 prec_g: 0.0000 disc_real_g: 0.0000 disc_fake_g: 100.0000 | wer: 0.9935930735930736
+2023-09-13 06:35:06,147 - root - INFO - 
+
+2023-09-13 06:52:50,855 - root - INFO - Train step: 12000 lip: 0.0000 local_sync: 0.0000 l1: 0.0636 prec_g: 0.0011 disc_real_g: 0.0011 disc_fake_g: 99.3595 | gpu: 24004 | lr: 0.0001
+2023-09-13 06:52:50,855 - root - INFO - Valid step: 12000 lip: 22.3173 local_sync: 12.6547 l1: 0.0442 prec_g: 0.0000 disc_real_g: 0.0000 disc_fake_g: 100.0000 | wer: 0.9939393939393939
+2023-09-13 06:52:50,855 - root - INFO - 
+
+2023-09-13 07:09:37,967 - root - INFO - Train step: 12300 lip: 0.0000 local_sync: 0.0000 l1: 0.0632 prec_g: 0.0011 disc_real_g: 0.0010 disc_fake_g: 99.3670 | gpu: 24000 | lr: 0.0001
+2023-09-13 07:09:37,967 - root - INFO - Valid step: 12300 lip: 22.2356 local_sync: 12.6868 l1: 0.0423 prec_g: 0.0000 disc_real_g: 0.0000 disc_fake_g: 100.0000 | wer: 0.992900432900433
+2023-09-13 07:09:37,967 - root - INFO - 
+
+2023-09-13 07:28:11,747 - root - INFO - Train step: 12600 lip: 0.0000 local_sync: 0.0000 l1: 0.0629 prec_g: 0.0011 disc_real_g: 0.0010 disc_fake_g: 99.3821 | gpu: 24104 | lr: 0.0001
+2023-09-13 07:28:11,747 - root - INFO - Valid step: 12600 lip: 22.1867 local_sync: 12.7310 l1: 0.0442 prec_g: 0.0000 disc_real_g: 0.0000 disc_fake_g: 100.0000 | wer: 0.9937662337662337
+2023-09-13 07:28:11,747 - root - INFO - 
+
+2023-09-13 07:46:46,346 - root - INFO - Train step: 12900 lip: 0.0000 local_sync: 0.0000 l1: 0.0625 prec_g: 0.0010 disc_real_g: 0.0010 disc_fake_g: 99.3810 | gpu: 24006 | lr: 0.0001
+2023-09-13 07:46:46,346 - root - INFO - Valid step: 12900 lip: 22.0686 local_sync: 12.7628 l1: 0.0519 prec_g: 0.0000 disc_real_g: 0.0000 disc_fake_g: 100.0000 | wer: 0.9925541125541125
+2023-09-13 07:46:46,346 - root - INFO - 
+
+2023-09-13 08:05:35,556 - root - INFO - Train step: 13200 lip: 0.0000 local_sync: 0.0000 l1: 0.0622 prec_g: 0.0010 disc_real_g: 0.0010 disc_fake_g: 99.3950 | gpu: 24104 | lr: 0.0001
+2023-09-13 08:05:35,557 - root - INFO - Valid step: 13200 lip: 22.3755 local_sync: 12.7655 l1: 0.0426 prec_g: 0.0000 disc_real_g: 0.0000 disc_fake_g: 100.0000 | wer: 0.9937662337662337
+2023-09-13 08:05:35,557 - root - INFO - 
+
+2023-09-13 08:24:22,953 - root - INFO - Train step: 13500 lip: 0.0000 local_sync: 0.0000 l1: 0.0619 prec_g: 0.0010 disc_real_g: 0.0010 disc_fake_g: 99.4011 | gpu: 24006 | lr: 0.0001
+2023-09-13 08:24:22,953 - root - INFO - Valid step: 13500 lip: 22.1989 local_sync: 12.8861 l1: 0.0443 prec_g: 0.0000 disc_real_g: 0.0000 disc_fake_g: 100.0000 | wer: 0.9935930735930736
+2023-09-13 08:24:22,953 - root - INFO - 
+
+2023-09-13 08:42:07,001 - root - INFO - Train step: 13800 lip: 0.0000 local_sync: 0.0000 l1: 0.0616 prec_g: 0.0010 disc_real_g: 0.0009 disc_fake_g: 99.3924 | gpu: 24004 | lr: 0.0001
+2023-09-13 08:42:07,001 - root - INFO - Valid step: 13800 lip: 22.0777 local_sync: 12.9685 l1: 0.0486 prec_g: 0.0000 disc_real_g: 0.0000 disc_fake_g: 100.0000 | wer: 0.9916883116883117
+2023-09-13 08:42:07,001 - root - INFO - 
+
+2023-09-13 09:00:45,983 - root - INFO - Train step: 14100 lip: 0.0000 local_sync: 0.0000 l1: 0.0613 prec_g: 0.0009 disc_real_g: 0.0009 disc_fake_g: 99.4053 | gpu: 24104 | lr: 0.0001
+2023-09-13 09:00:45,983 - root - INFO - Valid step: 14100 lip: 22.1618 local_sync: 12.9281 l1: 0.0423 prec_g: 0.0000 disc_real_g: 0.0000 disc_fake_g: 100.0000 | wer: 0.9925541125541125
+2023-09-13 09:00:45,983 - root - INFO - 
+
+2023-09-13 09:00:45,983 - root - INFO - Lip reading start to work
+2023-09-13 09:00:45,983 - root - INFO - 
+
+2023-09-13 09:19:41,909 - root - INFO - Train step: 14400 lip: 0.4452 local_sync: 0.0900 l1: 0.0610 prec_g: 0.0009 disc_real_g: 0.0009 disc_fake_g: 99.3899 | gpu: 23728 | lr: 0.0001
+2023-09-13 09:19:41,910 - root - INFO - Valid step: 14400 lip: 22.0637 local_sync: 3.4577 l1: 0.0433 prec_g: 0.0000 disc_real_g: 0.0000 disc_fake_g: 100.0000 | wer: 0.9927272727272727
+2023-09-13 09:19:41,910 - root - INFO - 
+
+2023-09-13 10:10:17,636 - root - INFO - Train step: 300 lip: 0.0000 local_sync: 0.0000 l1: 0.1544 prec_g: 0.3442 disc_real_g: 0.3240 disc_fake_g: 47.4265 | gpu: 23076 | lr: 0.0001
+2023-09-13 10:10:17,636 - root - INFO - Valid step: 300 lip: 21.6207 local_sync: 12.6066 l1: 0.1042 prec_g: 0.0000 disc_real_g: 0.0000 disc_fake_g: 100.0000 | wer: 0.983030303030303
+2023-09-13 10:10:17,636 - root - INFO - 
+
+2023-09-13 10:28:58,347 - root - INFO - Train step: 600 lip: 0.0000 local_sync: 0.0000 l1: 0.1352 prec_g: 0.1721 disc_real_g: 0.1620 disc_fake_g: 73.3799 | gpu: 23836 | lr: 0.0001
+2023-09-13 10:28:58,347 - root - INFO - Valid step: 600 lip: 21.7868 local_sync: 12.5954 l1: 0.0794 prec_g: 0.0000 disc_real_g: 0.0000 disc_fake_g: 100.0000 | wer: 0.9896103896103896
+2023-09-13 10:28:58,347 - root - INFO - 
+
+2023-09-13 10:46:31,571 - root - INFO - Train step: 900 lip: 0.0000 local_sync: 0.0000 l1: 0.1238 prec_g: 0.1147 disc_real_g: 0.1080 disc_fake_g: 81.8088 | gpu: 23836 | lr: 0.0001
+2023-09-13 10:46:31,572 - root - INFO - Valid step: 900 lip: 21.7919 local_sync: 12.5948 l1: 0.0621 prec_g: 0.0000 disc_real_g: 0.0000 disc_fake_g: 100.0000 | wer: 0.9897835497835498
+2023-09-13 10:46:31,572 - root - INFO - 
+
+2023-09-13 11:04:45,212 - root - INFO - Train step: 1200 lip: 0.0000 local_sync: 0.0000 l1: 0.1153 prec_g: 0.0860 disc_real_g: 0.0810 disc_fake_g: 86.3566 | gpu: 23952 | lr: 0.0001
+2023-09-13 11:04:45,212 - root - INFO - Valid step: 1200 lip: 21.9168 local_sync: 12.5887 l1: 0.0542 prec_g: 0.0000 disc_real_g: 0.0000 disc_fake_g: 100.0000 | wer: 0.9911688311688311
+2023-09-13 11:04:45,212 - root - INFO - 
+
+2023-09-13 11:22:47,702 - root - INFO - Train step: 1500 lip: 0.0000 local_sync: 0.0000 l1: 0.1086 prec_g: 0.0688 disc_real_g: 0.0648 disc_fake_g: 88.8186 | gpu: 23836 | lr: 0.0001
+2023-09-13 11:22:47,702 - root - INFO - Valid step: 1500 lip: 21.9947 local_sync: 12.5887 l1: 0.0699 prec_g: 0.0000 disc_real_g: 0.0000 disc_fake_g: 100.0000 | wer: 0.992900432900433
+2023-09-13 11:22:47,702 - root - INFO - 
+
+2023-09-13 11:40:43,223 - root - INFO - Train step: 1800 lip: 0.0000 local_sync: 0.0000 l1: 0.1036 prec_g: 0.0574 disc_real_g: 0.0540 disc_fake_g: 90.6266 | gpu: 23836 | lr: 0.0001
+2023-09-13 11:40:43,223 - root - INFO - Valid step: 1800 lip: 21.9254 local_sync: 12.5744 l1: 0.0669 prec_g: 0.0000 disc_real_g: 0.0000 disc_fake_g: 100.0000 | wer: 0.9918614718614719
+2023-09-13 11:40:43,223 - root - INFO - 
+
+2023-09-13 14:57:10,774 - root - INFO - Train step: 300 lip: 0.0000 local_sync: 0.0000 l1: 0.1751 prec_g: 0.6612 disc_real_g: 0.6427 disc_fake_g: 0.7312 | gpu: 23852 | lr: 0.0001
+2023-09-13 14:57:10,774 - root - INFO - Valid step: 300 lip: 21.4844 local_sync: 12.5174 l1: 0.1085 prec_g: 0.6732 disc_real_g: 0.3812 disc_fake_g: 0.7245 | wer: 0.9787012987012987
+2023-09-13 14:57:10,774 - root - INFO - 
+
+2023-09-13 15:16:11,312 - root - INFO - Train step: 600 lip: 0.0000 local_sync: 0.0000 l1: 0.1536 prec_g: 0.6606 disc_real_g: 0.6307 disc_fake_g: 0.7468 | gpu: 24144 | lr: 0.0001
+2023-09-13 15:16:11,312 - root - INFO - Valid step: 600 lip: 21.6745 local_sync: 12.5219 l1: 0.0890 prec_g: 0.6450 disc_real_g: 0.6416 disc_fake_g: 0.7437 | wer: 0.9856277056277056
+2023-09-13 15:16:11,312 - root - INFO - 
+
+2023-09-13 15:35:23,442 - root - INFO - Train step: 900 lip: 0.0000 local_sync: 0.0000 l1: 0.1427 prec_g: 0.6684 disc_real_g: 0.6330 disc_fake_g: 0.7375 | gpu: 24122 | lr: 0.0001
+2023-09-13 15:35:23,442 - root - INFO - Valid step: 900 lip: 21.7042 local_sync: 12.5211 l1: 0.0921 prec_g: 0.6378 disc_real_g: 0.6370 disc_fake_g: 0.7643 | wer: 0.9875324675324675
+2023-09-13 15:35:23,442 - root - INFO - 
+
+2023-09-13 15:54:44,452 - root - INFO - Train step: 1200 lip: 0.0000 local_sync: 0.0000 l1: 0.1371 prec_g: 0.6880 disc_real_g: 0.6239 disc_fake_g: 0.7255 | gpu: 24172 | lr: 0.0001
+2023-09-13 15:54:44,452 - root - INFO - Valid step: 1200 lip: 21.7258 local_sync: 12.5294 l1: 0.0807 prec_g: 0.5965 disc_real_g: 0.4377 disc_fake_g: 1.1554 | wer: 0.9890909090909091
+2023-09-13 15:54:44,452 - root - INFO - 
+
+2023-09-13 16:13:51,813 - root - INFO - Train step: 1500 lip: 0.0000 local_sync: 0.0000 l1: 0.1319 prec_g: 0.6923 disc_real_g: 0.6345 disc_fake_g: 0.7194 | gpu: 24006 | lr: 0.0001
+2023-09-13 16:13:51,813 - root - INFO - Valid step: 1500 lip: 21.7212 local_sync: 12.5292 l1: 0.0784 prec_g: 0.6888 disc_real_g: 0.6865 disc_fake_g: 0.6975 | wer: 0.9878787878787879
+2023-09-13 16:13:51,813 - root - INFO - 
+
+2023-09-13 16:32:09,173 - root - INFO - Train step: 1800 lip: 0.0000 local_sync: 0.0000 l1: 0.1277 prec_g: 0.6904 disc_real_g: 0.6367 disc_fake_g: 0.7179 | gpu: 21516 | lr: 0.0001
+2023-09-13 16:32:09,173 - root - INFO - Valid step: 1800 lip: 21.6521 local_sync: 12.5414 l1: 0.0948 prec_g: 0.7203 disc_real_g: 0.7236 disc_fake_g: 0.6667 | wer: 0.9804329004329004
+2023-09-13 16:32:09,173 - root - INFO - 
+
+2023-09-13 16:32:09,173 - root - INFO - Audio encoder start to finetune
+2023-09-13 16:32:09,173 - root - INFO - 
+
+2023-09-13 16:50:49,722 - root - INFO - Train step: 2100 lip: 0.0000 local_sync: 0.0000 l1: 0.1239 prec_g: 0.6886 disc_real_g: 0.6425 disc_fake_g: 0.7153 | gpu: 24136 | lr: 0.0001
+2023-09-13 16:50:49,722 - root - INFO - Valid step: 2100 lip: 21.7565 local_sync: 12.5190 l1: 0.0728 prec_g: 0.6560 disc_real_g: 0.6343 disc_fake_g: 0.7338 | wer: 0.9896103896103896
+2023-09-13 16:50:49,722 - root - INFO - 
+
+2023-09-13 17:09:48,911 - root - INFO - Train step: 2400 lip: 0.0000 local_sync: 0.0000 l1: 0.1209 prec_g: 0.6939 disc_real_g: 0.6440 disc_fake_g: 0.7102 | gpu: 24124 | lr: 0.0001
+2023-09-13 17:09:48,911 - root - INFO - Valid step: 2400 lip: 21.8317 local_sync: 12.5650 l1: 0.0655 prec_g: 0.5908 disc_real_g: 0.5655 disc_fake_g: 1.0642 | wer: 0.9903030303030304
+2023-09-13 17:09:48,911 - root - INFO - 
+
+2023-09-13 17:28:04,568 - root - INFO - Train step: 2700 lip: 0.0000 local_sync: 0.0000 l1: 0.1183 prec_g: 0.7021 disc_real_g: 0.6431 disc_fake_g: 0.7067 | gpu: 22640 | lr: 0.0001
+2023-09-13 17:28:04,568 - root - INFO - Valid step: 2700 lip: 21.7889 local_sync: 12.5626 l1: 0.0677 prec_g: 0.1330 disc_real_g: 0.1716 disc_fake_g: 4.6754 | wer: 0.9892640692640693
+2023-09-13 17:28:04,568 - root - INFO - 
+
+2023-09-13 17:47:18,336 - root - INFO - Train step: 3000 lip: 0.0000 local_sync: 0.0000 l1: 0.1159 prec_g: 0.7019 disc_real_g: 0.6424 disc_fake_g: 0.7100 | gpu: 23370 | lr: 0.0001
+2023-09-13 17:47:18,336 - root - INFO - Valid step: 3000 lip: 21.8418 local_sync: 12.6095 l1: 0.0625 prec_g: 0.5197 disc_real_g: 0.5364 disc_fake_g: 1.1429 | wer: 0.9911688311688311
+2023-09-13 17:47:18,336 - root - INFO - 
+
+2023-09-13 18:06:57,412 - root - INFO - Train step: 3300 lip: 0.0000 local_sync: 0.0000 l1: 0.1138 prec_g: 0.7049 disc_real_g: 0.6397 disc_fake_g: 0.7062 | gpu: 23488 | lr: 0.0001
+2023-09-13 18:06:57,412 - root - INFO - Valid step: 3300 lip: 21.7963 local_sync: 12.6257 l1: 0.0756 prec_g: 0.7283 disc_real_g: 0.6150 disc_fake_g: 0.6730 | wer: 0.9897835497835498
+2023-09-13 18:06:57,412 - root - INFO - 
+
+2023-09-13 18:26:57,175 - root - INFO - Train step: 3600 lip: 0.0000 local_sync: 0.0000 l1: 0.1119 prec_g: 0.7079 disc_real_g: 0.6374 disc_fake_g: 0.7032 | gpu: 23490 | lr: 0.0001
+2023-09-13 18:26:57,175 - root - INFO - Valid step: 3600 lip: 21.8327 local_sync: 12.6220 l1: 0.0750 prec_g: 0.7186 disc_real_g: 0.6904 disc_fake_g: 0.6688 | wer: 0.9897835497835498
+2023-09-13 18:26:57,175 - root - INFO - 
+
+2023-09-13 18:26:57,175 - root - INFO - Lip reading start to work
+2023-09-13 18:26:57,175 - root - INFO - 
+
+2023-09-13 18:47:23,998 - root - INFO - Train step: 3900 lip: 1.5837 local_sync: 0.4760 l1: 0.1102 prec_g: 0.7092 disc_real_g: 0.6398 disc_fake_g: 0.7016 | gpu: 23726 | lr: 0.0001
+2023-09-13 18:47:23,998 - root - INFO - Valid step: 3900 lip: 21.8102 local_sync: 4.1983 l1: 0.0579 prec_g: 0.7107 disc_real_g: 0.7061 disc_fake_g: 0.6759 | wer: 0.9908225108225108
+2023-09-13 18:47:23,998 - root - INFO - 
+
+2023-09-13 19:08:05,566 - root - INFO - Train step: 4200 lip: 3.0438 local_sync: 0.6970 l1: 0.1086 prec_g: 0.7088 disc_real_g: 0.6400 disc_fake_g: 0.7004 | gpu: 23768 | lr: 0.0001
+2023-09-13 19:08:05,566 - root - INFO - Valid step: 4200 lip: 21.7950 local_sync: 3.8281 l1: 0.0650 prec_g: 0.7004 disc_real_g: 0.6600 disc_fake_g: 0.7217 | wer: 0.9899567099567099
+2023-09-13 19:08:05,566 - root - INFO - 
+
+2023-09-13 19:33:31,602 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_224/checkpoint_step000004500.pth
+2023-09-13 19:33:34,283 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_224/checkpoint_step000004500.pth
+2023-09-13 19:33:34,532 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_224/disc_checkpoint_step000004500.pth
+2023-09-13 19:33:34,680 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_224/disc_checkpoint_step000004500.pth
+2023-09-13 21:01:34,927 - root - INFO - Train step: 8000 lip: 0.0000 local_sync: 0.0000 l1: 0.0773 prec_g: 0.7067 disc_real_g: 0.6457 disc_fake_g: 0.6981 | gpu: 23908 | lr: 0.0001
+2023-09-13 21:01:34,927 - root - INFO - Valid step: 8000 lip: 21.9952 local_sync: 3.7284 l1: 0.0501 prec_g: 0.7082 disc_real_g: 0.6806 disc_fake_g: 0.6914 | wer: 0.9925541125541125
+2023-09-13 21:01:34,927 - root - INFO - 
+
+2023-09-13 22:40:15,911 - root - INFO - Train step: 12000 lip: 0.0000 local_sync: 0.0000 l1: 0.0709 prec_g: 0.6891 disc_real_g: 0.6498 disc_fake_g: 0.7075 | gpu: 23916 | lr: 0.0001
+2023-09-13 22:40:15,911 - root - INFO - Valid step: 12000 lip: 22.2540 local_sync: 3.9825 l1: 0.0522 prec_g: 0.7131 disc_real_g: 0.7020 disc_fake_g: 0.6756 | wer: 0.9932467532467533
+2023-09-13 22:40:15,911 - root - INFO - 
+
+2023-09-14 00:18:37,297 - root - INFO - Train step: 16000 lip: 0.0000 local_sync: 0.0000 l1: 0.0671 prec_g: 0.6870 disc_real_g: 0.6550 disc_fake_g: 0.7061 | gpu: 23916 | lr: 0.0001
+2023-09-14 00:18:37,298 - root - INFO - Valid step: 16000 lip: 22.3275 local_sync: 4.0254 l1: 0.0464 prec_g: 0.6708 disc_real_g: 0.6705 disc_fake_g: 0.7164 | wer: 0.9937662337662337
+2023-09-14 00:18:37,298 - root - INFO - 
+
+2023-09-14 01:53:09,796 - root - INFO - Train step: 20000 lip: 0.0000 local_sync: 0.0000 l1: 0.0636 prec_g: 0.6804 disc_real_g: 0.6561 disc_fake_g: 0.7095 | gpu: 23918 | lr: 0.0001
+2023-09-14 01:53:09,796 - root - INFO - Valid step: 20000 lip: 22.0316 local_sync: 3.7362 l1: 0.0485 prec_g: 0.6662 disc_real_g: 0.6656 disc_fake_g: 0.7210 | wer: 0.9925541125541125
+2023-09-14 01:53:09,796 - root - INFO - 
+
+2023-09-14 03:28:01,326 - root - INFO - Train step: 24000 lip: 0.0000 local_sync: 0.0000 l1: 0.0611 prec_g: 0.6770 disc_real_g: 0.6567 disc_fake_g: 0.7115 | gpu: 24058 | lr: 0.0001
+2023-09-14 03:28:01,326 - root - INFO - Valid step: 24000 lip: 22.3001 local_sync: 4.0525 l1: 0.0427 prec_g: 0.6747 disc_real_g: 0.6736 disc_fake_g: 0.7121 | wer: 0.9939393939393939
+2023-09-14 03:28:01,326 - root - INFO - 
+
+2023-09-14 05:01:51,098 - root - INFO - Train step: 28000 lip: 0.0000 local_sync: 0.0000 l1: 0.0591 prec_g: 0.6747 disc_real_g: 0.6567 disc_fake_g: 0.7134 | gpu: 24064 | lr: 0.0001
+2023-09-14 05:01:51,098 - root - INFO - Valid step: 28000 lip: 22.2640 local_sync: 3.9894 l1: 0.0442 prec_g: 0.6631 disc_real_g: 0.6588 disc_fake_g: 0.7241 | wer: 0.9927272727272727
+2023-09-14 05:01:51,098 - root - INFO - 
+
+2023-09-14 06:33:07,448 - root - INFO - Train step: 32000 lip: 0.0000 local_sync: 0.0000 l1: 0.0574 prec_g: 0.6728 disc_real_g: 0.6568 disc_fake_g: 0.7147 | gpu: 24064 | lr: 0.0001
+2023-09-14 06:33:07,448 - root - INFO - Valid step: 32000 lip: 22.3319 local_sync: 4.1017 l1: 0.0429 prec_g: 0.6641 disc_real_g: 0.6643 disc_fake_g: 0.7231 | wer: 0.9935930735930736
+2023-09-14 06:33:07,448 - root - INFO - 
+
+2023-09-14 08:03:19,853 - root - INFO - Train step: 36000 lip: 0.0000 local_sync: 0.0000 l1: 0.0558 prec_g: 0.6711 disc_real_g: 0.6570 disc_fake_g: 0.7155 | gpu: 24062 | lr: 0.0001
+2023-09-14 08:03:19,854 - root - INFO - Valid step: 36000 lip: 21.9867 local_sync: 3.6832 l1: 0.0578 prec_g: 0.6526 disc_real_g: 0.6556 disc_fake_g: 0.7355 | wer: 0.992034632034632
+2023-09-14 08:03:19,854 - root - INFO - 
+
+2023-09-14 09:29:53,909 - root - INFO - Train step: 40000 lip: 0.0000 local_sync: 0.0000 l1: 0.0543 prec_g: 0.6698 disc_real_g: 0.6571 disc_fake_g: 0.7162 | gpu: 24062 | lr: 0.0001
+2023-09-14 09:29:53,910 - root - INFO - Valid step: 40000 lip: 22.1149 local_sync: 3.8276 l1: 0.0484 prec_g: 0.6564 disc_real_g: 0.6575 disc_fake_g: 0.7313 | wer: 0.9930735930735931
+2023-09-14 09:29:53,910 - root - INFO - 
+
+2023-09-14 10:54:40,227 - root - INFO - Train step: 44000 lip: 0.0000 local_sync: 0.0000 l1: 0.0530 prec_g: 0.6689 disc_real_g: 0.6572 disc_fake_g: 0.7169 | gpu: 24064 | lr: 0.0001
+2023-09-14 10:54:40,227 - root - INFO - Valid step: 44000 lip: 22.2543 local_sync: 4.0138 l1: 0.0465 prec_g: 0.6568 disc_real_g: 0.6568 disc_fake_g: 0.7309 | wer: 0.992900432900433
+2023-09-14 10:54:40,227 - root - INFO - 
+
+2023-09-14 12:32:24,185 - root - INFO - Train step: 48000 lip: 0.0000 local_sync: 0.0000 l1: 0.0518 prec_g: 0.6679 disc_real_g: 0.6571 disc_fake_g: 0.7175 | gpu: 24064 | lr: 0.0001
+2023-09-14 12:32:24,185 - root - INFO - Valid step: 48000 lip: 22.1421 local_sync: 3.8766 l1: 0.0478 prec_g: 0.6595 disc_real_g: 0.6609 disc_fake_g: 0.7280 | wer: 0.9927272727272727
+2023-09-14 12:32:24,185 - root - INFO - 
+
+2023-09-14 12:32:24,185 - root - INFO - Audio encoder start to finetune
+2023-09-14 12:32:24,185 - root - INFO - 
+
+2023-09-14 13:59:05,392 - root - INFO - Train step: 52000 lip: 0.0000 local_sync: 0.0000 l1: 0.0508 prec_g: 0.6672 disc_real_g: 0.6569 disc_fake_g: 0.7182 | gpu: 24082 | lr: 0.0001
+2023-09-14 13:59:05,392 - root - INFO - Valid step: 52000 lip: 22.1437 local_sync: 4.2039 l1: 0.0453 prec_g: 0.6415 disc_real_g: 0.6428 disc_fake_g: 0.7481 | wer: 0.9922077922077922
+2023-09-14 13:59:05,392 - root - INFO - 
+
