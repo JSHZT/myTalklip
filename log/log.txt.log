@@ -957,3 +957,63 @@
 2023-09-14 13:59:05,392 - root - INFO - Valid step: 52000 lip: 22.1437 local_sync: 4.2039 l1: 0.0453 prec_g: 0.6415 disc_real_g: 0.6428 disc_fake_g: 0.7481 | wer: 0.9922077922077922
 2023-09-14 13:59:05,392 - root - INFO - 
 
+2023-09-14 15:32:13,575 - root - INFO - Train step: 56000 lip: 0.0000 local_sync: 0.0000 l1: 0.0498 prec_g: 0.6671 disc_real_g: 0.6571 disc_fake_g: 0.7201 | gpu: 24082 | lr: 0.0001
+2023-09-14 15:32:13,575 - root - INFO - Valid step: 56000 lip: 22.2656 local_sync: 4.4258 l1: 0.0403 prec_g: 0.7778 disc_real_g: 0.7438 disc_fake_g: 0.6162 | wer: 0.9908225108225108
+2023-09-14 15:32:13,575 - root - INFO - 
+
+2023-09-14 17:04:23,239 - root - INFO - Train step: 60000 lip: 0.0000 local_sync: 0.0000 l1: 0.0490 prec_g: 0.6672 disc_real_g: 0.6571 disc_fake_g: 0.7199 | gpu: 24078 | lr: 0.0001
+2023-09-14 17:04:23,239 - root - INFO - Valid step: 60000 lip: 22.2348 local_sync: 4.3687 l1: 0.0411 prec_g: 0.6835 disc_real_g: 0.6779 disc_fake_g: 0.7034 | wer: 0.9918614718614719
+2023-09-14 17:04:23,239 - root - INFO - 
+
+2023-09-14 17:51:12,029 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_224/checkpoint_step000004500.pth
+2023-09-14 17:52:17,410 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_224/checkpoint_step000004500.pth
+2023-09-14 17:55:55,214 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_224/checkpoint_step000004500.pth
+2023-09-14 18:04:57,420 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_224/checkpoint_step000004500.pth
+2023-09-14 18:04:59,761 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_224/checkpoint_step000004500.pth
+2023-09-14 18:04:59,859 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_224/disc_checkpoint_step000004500.pth
+2023-09-14 18:05:00,022 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_224/disc_checkpoint_step000004500.pth
+2023-09-14 18:08:38,346 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_224/checkpoint_step000004500.pth
+2023-09-14 18:08:40,553 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_224/checkpoint_step000004500.pth
+2023-09-14 18:08:40,675 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_224/disc_checkpoint_step000004500.pth
+2023-09-14 18:08:40,794 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_224/disc_checkpoint_step000004500.pth
+2023-09-14 18:10:08,648 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_224/checkpoint_step000004500.pth
+2023-09-14 18:11:00,575 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_224/checkpoint_step000004500.pth
+2023-09-14 18:11:02,864 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_224/checkpoint_step000004500.pth
+2023-09-14 18:11:02,969 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_224/disc_checkpoint_step000004500.pth
+2023-09-14 18:11:03,092 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_224/disc_checkpoint_step000004500.pth
+2023-09-14 18:17:06,022 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_224/checkpoint_step000004500.pth
+2023-09-14 18:17:08,494 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_224/checkpoint_step000004500.pth
+2023-09-14 18:17:08,644 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_224/disc_checkpoint_step000004500.pth
+2023-09-14 18:17:08,783 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_224/disc_checkpoint_step000004500.pth
+2023-09-14 18:18:30,787 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_224/checkpoint_step000004500.pth
+2023-09-14 18:18:33,242 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_224/checkpoint_step000004500.pth
+2023-09-14 18:18:33,368 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_224/disc_checkpoint_step000004500.pth
+2023-09-14 18:18:33,482 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_224/disc_checkpoint_step000004500.pth
+2023-09-14 18:19:50,809 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_224/checkpoint_step000004500.pth
+2023-09-14 18:19:53,255 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_224/checkpoint_step000004500.pth
+2023-09-14 18:19:53,372 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_224/disc_checkpoint_step000004500.pth
+2023-09-14 18:19:53,532 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_224/disc_checkpoint_step000004500.pth
+2023-09-14 18:28:19,074 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_224/checkpoint_step000000001.pth
+2023-09-14 18:28:23,219 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_224/checkpoint_step000000001.pth
+2023-09-14 18:28:23,228 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_224/disc_checkpoint_step000000001.pth
+2023-09-14 18:28:23,285 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_224/disc_checkpoint_step000000001.pth
+2023-09-14 18:36:19,552 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_224/checkpoint_step000000001.pth
+2023-09-14 18:36:24,255 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_224/checkpoint_step000000001.pth
+2023-09-14 18:36:24,265 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_224/disc_checkpoint_step000000001.pth
+2023-09-14 18:36:24,315 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_224/disc_checkpoint_step000000001.pth
+2023-09-14 18:41:02,685 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_224/checkpoint_step000000001.pth
+2023-09-14 18:41:04,897 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_224/checkpoint_step000000001.pth
+2023-09-14 18:41:04,906 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_224/disc_checkpoint_step000000001.pth
+2023-09-14 18:41:04,960 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_224/disc_checkpoint_step000000001.pth
+2023-09-14 19:39:00,890 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_224/checkpoint_step000000001.pth
+2023-09-14 19:39:03,224 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_224/checkpoint_step000000001.pth
+2023-09-14 19:39:03,233 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_224/disc_checkpoint_step000000001.pth
+2023-09-14 19:39:03,278 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_224/disc_checkpoint_step000000001.pth
+2023-09-14 19:40:26,555 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_224/checkpoint_step000000001.pth
+2023-09-14 19:40:28,897 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_224/checkpoint_step000000001.pth
+2023-09-14 19:40:28,907 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_224/disc_checkpoint_step000000001.pth
+2023-09-14 19:40:28,962 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_224/disc_checkpoint_step000000001.pth
+2023-09-14 19:45:08,854 - root - INFO - Train step: 20 lip: 0.0000 local_sync: 0.0000 l1: 0.2307 prec_g: 0.6422 disc_real_g: 0.6219 disc_fake_g: 0.7496 |gpus{0: 17056, 1: 21720, 2: 24086, 3: 20378} | lr: 0.0001
+2023-09-14 19:45:08,854 - root - INFO - Valid step: 20 lip: 22.1184 local_sync: 12.6127 l1: 0.2412 prec_g: 0.6437 disc_real_g: 0.5745 disc_fake_g: 0.7452 | wer: 0.9819156061620897
+2023-09-14 19:45:08,854 - root - INFO - 
+

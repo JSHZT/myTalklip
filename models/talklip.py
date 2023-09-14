@@ -5,7 +5,6 @@ https://github.com/Rudrabha/Wav2Lip.
 We design a new audio encoder with transformer
 """
 
-
 import contextlib
 import torch
 from torch import nn
@@ -13,6 +12,8 @@ from torch.nn import functional as F
 from .learn_sync import av_sync
 
 from .conv import Conv2dTranspose, Conv2d, nonorm_Conv2d
+
+
 
 
 class TalkLip(nn.Module):

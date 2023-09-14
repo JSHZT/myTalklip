@@ -13,11 +13,19 @@ from torch import optim
 from argparse import Namespace
 from torch.utils.data import DataLoader
 from python_speech_features import logfbank
+from torch.utils import data
 from fairseq.data import data_utils
 from fairseq import checkpoint_utils, utils, tasks
 from fairseq.dataclass.utils import convert_namespace_to_omegaconf, populate_dataclass, merge_with_parent
 from scipy.io import wavfile
 from utils.data_avhubert import collater_audio, images2avhubert
+from distributed import (
+    get_rank,
+    synchronize,
+    reduce_loss_dict,
+    reduce_sum,
+    get_world_size,
+)
 
 import os, random, cv2, argparse, subprocess
 
@@ -416,6 +424,24 @@ def get_gpu_memory_map():
     return gpu_memory_map
 
 
+def data_sampler(dataset, shuffle, distributed):
+    if distributed:
+        return data.distributed.DistributedSampler(dataset)
+    if shuffle:
+        return data.RandomSampler(dataset)
+    else:
+        return data.SequentialSampler(dataset)
+
+def create_dataloader(mode, args, label_proc, distributed,
+                      batch_size=1, shuffle=False, num_workers=0, pin_memory=False):
+    
+    dataset = Talklipdata(mode, args, label_proc)
+    sampler = data_sampler(dataset, shuffle=shuffle, distributed=distributed)
+
+    return sampler, DataLoader(dataset, batch_size=batch_size,sampler=sampler,collate_fn=collate_fn,
+                      num_workers=num_workers, pin_memory=pin_memory)
+
+
 def local_sync_loss(pickid, enc_audio, enc_video):
     pickedAud = enc_audio.permute(1, 0, 2).reshape(-1, enc_audio.shape[2])[pickid]
     pickedVid = enc_video.permute(1, 0, 2).reshape(-1, enc_video.shape[2])[pickid]
@@ -445,7 +471,7 @@ class status_manager(object):
             return self.status, False
 
 
-def train(device, model, avhubert, criterion, data_loader, optimizer, args, global_step, logger):
+def train(device, model, avhubert, criterion, data_loader, optimizer, args, global_step, logger=None):
 
     print('Starting Step: {}'.format(global_step))
 
@@ -494,7 +520,7 @@ def train(device, model, avhubert, criterion, data_loader, optimizer, args, glob
                     lip_loss, local_sync = 0., 0.
 
                 if args.perp_w > 0.:
-                    perceptual_loss = model['disc'].perceptual_forward(syntim)
+                    perceptual_loss = model['disc'].module.perceptual_forward(syntim)
                     losses['prec_g'] += perceptual_loss.item()
                 else:
                     perceptual_loss = 0.
@@ -527,7 +553,7 @@ def train(device, model, avhubert, criterion, data_loader, optimizer, args, glob
                     optimizer['disc'].step()
                     optimizer['disc'].zero_grad()
 
-                if global_step % args.ckpt_interval == 0:
+                if global_step % args.ckpt_interval == 0 and args.local_rank==0:
                     save_sample_images(inpim, syntim, gtim, global_step, args.checkpoint_dir)
             except RuntimeError as e:
                 inpim, gtim, trgt, prev_trg, spectrogram, padding_mask, net_input, sample = 0, 0, 0, 0, 0, 0, 0, 0
@@ -542,16 +568,16 @@ def train(device, model, avhubert, criterion, data_loader, optimizer, args, glob
 
             global_step += 1
 
-            if global_step == 1 or global_step % args.ckpt_interval == 0:
+            if args.local_rank==0 and (global_step == 1 or global_step % args.ckpt_interval == 0):
                 save_checkpoint(model['gen'], optimizer['gen'], global_step, args.checkpoint_dir, epoch)
                 save_checkpoint(model['disc'], optimizer['disc'], global_step, args.checkpoint_dir, epoch, prefix='disc_')
 
             train_log = 'Train step: {} '.format(global_step)
             for key, value in losses.items():
                 train_log += '{}: {:.4f} '.format(key, value / (step + 1))
-            train_log += '| gpu: {} | lr: {}'.format(get_gpu_memory_map()[args.gpu], optimizer['gen'].param_groups[0]['lr'])
+            train_log += '|gpus{} | lr: {}'.format(get_gpu_memory_map(), optimizer['gen'].param_groups[0]['lr'])
 
-            if global_step % args.ckpt_interval == 0:
+            if args.local_rank==0 and (global_step % args.ckpt_interval == 0):
                 with torch.no_grad():
                     average_sync_loss, valid_log = eval_model(data_loader['test'], avhubert, criterion, global_step, device, model['gen'], model['disc'], args.cont_w, recon_loss)
                     prog_bar.set_description(valid_log)
@@ -577,9 +603,11 @@ def train(device, model, avhubert, criterion, data_loader, optimizer, args, glob
                         logger.info('Training done')
                         import sys
                         sys.exit()
+            if args.local_rank==0:
+                prog_bar.set_description(train_log)
 
-            prog_bar.set_description(train_log)
-        logger.info('There are {} cases of out of memory in one epoch'.format(oom_count))
+        if args.local_rank==0:
+            logger.info('There are {} cases of out of memory in one epoch'.format(oom_count))
 
 
 
@@ -599,6 +627,7 @@ def eval_model(test_data_loader, avhubert, criterion, global_step, device, model
         gt = gt.to(device)
         trgt, prev_trg = trgt.to(device), prev_trg.to(device)
         padding_mask = padding_mask.to(device)
+    
 
         sample = {'net_input': {'source': {'audio': spectrogram, 'video': None}, 'padding_mask': padding_mask, 'prev_output_tokens': prev_trg},
                   'target_lengths': tlen, 'ntokens': ntoken, 'target': trgt}
@@ -623,13 +652,13 @@ def eval_model(test_data_loader, avhubert, criterion, global_step, device, model
 
         if cont_w > 0:
             pickedVid, pickedAud = local_sync_loss(audio_idx, enc_audio, enc_out['encoder_out'])
-            local_sync = model.sync_net(pickedVid, pickedAud)
+            local_sync = model.module.sync_net(pickedVid, pickedAud)
             losses['local_sync'] += local_sync.item()
 
         n_correct += logs['n_correct']
         n_total += logs['total']
         if args.perp_w > 0.:
-            perceptual_loss = disc.perceptual_forward(g)
+            perceptual_loss = disc.module.perceptual_forward(g)
             losses['prec_g'] += perceptual_loss.item()
 
         l1loss = recon_loss(g, gt)
@@ -649,41 +678,42 @@ def save_checkpoint(model, optimizer, global_step, checkpoint_dir, epoch, prefix
     checkpoint_path = join(
         checkpoint_dir, "{}checkpoint_step{:09d}.pth".format(prefix, global_step))
     optimizer_state = optimizer.state_dict() if optimizer is not None else None
+    
+    model = model.module.cpu()
     torch.save({
         "state_dict": model.state_dict(),
         "optimizer": optimizer_state,
         "global_step": global_step,
         "global_epoch": epoch,
     }, checkpoint_path)
-
+    model.to(device)
     print("Saved checkpoint:", checkpoint_path)
 
 
 def _load(checkpoint_path):
-    if use_cuda:
-        checkpoint = torch.load(checkpoint_path)
-    else:
-        checkpoint = torch.load(checkpoint_path,
-                                map_location=lambda storage, loc: storage)
+    checkpoint = torch.load(checkpoint_path)
+    
     return checkpoint
 
 
-def load_checkpoint(path, model, optimizer, logger, reset_optimizer=False, overwrite_global_states=True):
-
+def load_checkpoint(path, model, optimizer, logger=None, reset_optimizer=False, overwrite_global_states=True):
+    model = model.module.cpu()
     print("Load checkpoint from: {}".format(path))
-    logger.info("Load checkpoint from: {}".format(path))
+    if logger is not None:
+        logger.info("Load checkpoint from: {}".format(path))
     checkpoint = _load(path)
     s = checkpoint["state_dict"]
     new_s = model.state_dict()
     for k, v in s.items():
         new_s[k] = v
     model.load_state_dict(new_s)
-
+    model.to(device)
     if not reset_optimizer:
         optimizer_state = checkpoint["optimizer"]
         if optimizer_state is not None:
             print("Load optimizer state from {}".format(path))
-            logger.info("Load optimizer state from {}".format(path))
+            if logger is not None:
+                logger.info("Load optimizer state from {}".format(path))
             optimizer.load_state_dict(checkpoint["optimizer"])
     if overwrite_global_states:
         global_step = checkpoint["global_step"]
@@ -721,49 +751,74 @@ if __name__ == "__main__":
     parser.add_argument('--perp_w', help='weight of perceptual loss', default=0.07, type=float)
 
     # training
-    parser.add_argument('--gpu', help='index of gpu used', default=0, type=int)
+    # parser.add_argument('--gpu', help='index of gpu used', default=0, type=int)
     parser.add_argument('--n_epoch', help='number of epoch', default=100, type=int)
     parser.add_argument('--log_name', help='name of a log file', default='talklip', type=str)
     parser.add_argument('--accumulation_steps', default=8, type=int)
     parser.add_argument('--ckpt_interval', help='The interval of saving a checkpoint', default=3000, type=int)
 
+    parser.add_argument('--distributed', action="store_true")
+    parser.add_argument("--local_rank", type=int, default=0)
+    
     args = parser.parse_args()
-
-    use_cuda = torch.cuda.is_available()
-    print('use_cuda: {}, {}'.format(args.gpu, use_cuda))
-    device = "cuda:{}".format(args.gpu) if use_cuda else "cpu"
-
+    
+    if args.distributed:
+        torch.distributed.init_process_group(backend="nccl", init_method="env://")
+        torch.cuda.set_device(args.local_rank)
+        
+    device = torch.device("cuda", args.local_rank)
+    
     avhubert, label_proc, generator, criterion, encoder = retrieve_avhubert(args.avhubert_root, args.avhubert_path, device)
 
     # Dataset and Dataloader setup
-    train_dataset = Talklipdata('train', args, label_proc)
-    test_dataset = Talklipdata('valid', args, label_proc)
+    
+    # test_dataset = Talklipdata('valid', args, label_proc)
+    # train_data_loader = DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True, sampler=train_sampler, collate_fn=collate_fn, num_workers=args.num_worker)
+    # test_data_loader = DataLoader(test_dataset, batch_size=args.batch_size, sampler=test_sampler, collate_fn=collate_fn, num_workers=args.num_worker)
 
-    train_data_loader = DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True, collate_fn=collate_fn, num_workers=args.num_worker)
-
-    test_data_loader = DataLoader(test_dataset, batch_size=args.batch_size, collate_fn=collate_fn, num_workers=args.num_worker)
+    train_data_loader = create_dataloader('train', args, label_proc, args.distributed, args.batch_size, num_workers=args.num_worker)[-1]
+    test_data_loader = create_dataloader('valid', args, label_proc, args.distributed, args.batch_size, num_workers=args.num_worker)[-1]
 
     imGen = TalkLip(encoder, 768).to(device)
     imDisc = TalkLip_disc_qual().to(device)
+    imGen=torch.nn.parallel.DistributedDataParallel(imGen,
+                                                    device_ids=[args.local_rank],
+                                                    output_device=args.local_rank,
+                                                    broadcast_buffers=False,
+                                                    find_unused_parameters=True
+                                                    )
+    imDisc=torch.nn.parallel.DistributedDataParallel(imDisc,
+                                                    device_ids=[args.local_rank],
+                                                    output_device=args.local_rank,
+                                                    broadcast_buffers=False,
+                                                    find_unused_parameters=True
+                                                    )
+    # avhubert=torch.nn.parallel.DistributedDataParallel(avhubert,
+    #                                                    device_ids=[args.local_rank],
+    #                                                    output_device=args.local_rank,
+    #                                                    broadcast_buffers=False,
+    #                                                    )
+    
 
     optimizer = optim.Adam([p for p in imGen.parameters() if p.requires_grad],
                            lr=args.lr, betas=(0.5, 0.999))
     disc_optimizer = optim.Adam([p for p in imDisc.parameters() if p.requires_grad],
                                 lr=args.lr, betas=(0.5, 0.999))
-
-    os.makedirs('log/', exist_ok=True)
-    logger = init_logging(log_name='log/{}.log'.format(args.log_name))
-
+    if args.local_rank==0:
+        os.makedirs('log/', exist_ok=True)
+        logger = init_logging(log_name='log/{}.log'.format(args.log_name))
+        print(args.gen_checkpoint_path)
+    else:
+        logger=None
+    
     global_step = 0
-    print(args.gen_checkpoint_path)
     if args.gen_checkpoint_path is not None:
         global_step = load_checkpoint(args.gen_checkpoint_path, imGen, optimizer, logger)
 
     if args.disc_checkpoint_path is not None:
         load_checkpoint(args.disc_checkpoint_path, imDisc, disc_optimizer, logger,
                         reset_optimizer=False, overwrite_global_states=False)
-
-    if not os.path.exists(args.checkpoint_dir):
+    if not os.path.exists(args.checkpoint_dir) and args.local_rank==0:
         os.makedirs(args.checkpoint_dir, exist_ok=True)
 
     train(device, {'gen': imGen, 'disc': imDisc}, avhubert, criterion, {'train': train_data_loader, 'test': test_data_loader},
