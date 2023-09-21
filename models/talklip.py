@@ -126,6 +126,8 @@ class TalkLip(nn.Module):
             feats.append(x)
         # T*B*C -> N*C -> N*512*1*1
         x = audio_embedding.permute(1, 0, 2).reshape(-1, audio_embedding.shape[2])[idAudio]
+        print(x.shape)
+        exit()
         x = self.audio_map(x).reshape(x.shape[0], 512, 1, 1)
 
         for i, f in enumerate(self.face_decoder_blocks):

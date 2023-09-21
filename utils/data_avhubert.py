@@ -167,36 +167,61 @@ def affine_trans(imgs, video_size):
 
 
 # def emb_roi2im(pickedimg, imgs, bbxs, pre, device):
-def emb_roi2im(pickedimg, imgs, pre, device):
+# def emb_roi2im(pickedimg, imgs, pre, device):
     
+#     trackid = 0
+#     width = imgs[0][0].shape[1]
+#     for i in range(len(pickedimg)): # B
+#         idimg = pickedimg[i]
+#         imgs[i] = imgs[i].float().to(device)
+#         for j in range(len(idimg)): # N
+#             # bbx = bbxs[i][idimg[j]]
+#             # if bbx[2] > width: bbx[2] = width
+#             # if bbx[3] > width: bbx[3] = width
+#             # resize2ori = transforms.Resize([bbx[3] - bbx[1], bbx[2] - bbx[0]])
+#             try:
+#                 # resized = resize2ori(pre[trackid + j] * 255.).permute(1, 2, 0)
+#                 # imgs[i][idimg[j]][bbx[1]:bbx[3], bbx[0]:bbx[2], :] = resized
+#                 imgs[i][idimg[j]][:] = (pre[trackid + j] * 255.).permute(1, 2, 0)
+#             except:
+#                 # print(bbx, resized.shape)
+#                 print('error!')
+#                 import sys; sys.exit();
+#         trackid += len(idimg)
+
+#     return imgs
+
+# def images2avhubert(pickedimg, imgs, bbxs, pre, video_size, device):
+#     imgs = emb_roi2im(pickedimg, imgs, bbxs, pre, device)
+
+# # def images2avhubert(pickedimg, imgs, pre, video_size, device):
+#     # imgs = emb_roi2im(pickedimg, imgs, pre, device)
+#     processed_img = affine_trans(imgs, video_size).to(device)
+#     return processed_img
+
+def emb_roi2im(pickedimg, imgs, bbxs, pre, device):
     trackid = 0
     width = imgs[0][0].shape[1]
-    for i in range(len(pickedimg)): # B
+    for i in range(len(pickedimg)):
         idimg = pickedimg[i]
         imgs[i] = imgs[i].float().to(device)
-        for j in range(len(idimg)): # N
-            # bbx = bbxs[i][idimg[j]]
-            # if bbx[2] > width: bbx[2] = width
-            # if bbx[3] > width: bbx[3] = width
-            # resize2ori = transforms.Resize([bbx[3] - bbx[1], bbx[2] - bbx[0]])
+        for j in range(len(idimg)):
+            bbx = bbxs[i][idimg[j]]
+            if bbx[2] > width: bbx[2] = width
+            if bbx[3] > width: bbx[3] = width
+            resize2ori = transforms.Resize([bbx[3] - bbx[1], bbx[2] - bbx[0]])
             try:
-                # resized = resize2ori(pre[trackid + j] * 255.).permute(1, 2, 0)
-                # imgs[i][idimg[j]][bbx[1]:bbx[3], bbx[0]:bbx[2], :] = resized
-                imgs[i][idimg[j]][:] = (pre[trackid + j] * 255.).permute(1, 2, 0)
+                resized = resize2ori(pre[trackid + j] * 255.).permute(1, 2, 0)
+                imgs[i][idimg[j]][bbx[1]:bbx[3], bbx[0]:bbx[2], :] = resized
             except:
-                # print(bbx, resized.shape)
-                print('error!')
-                import sys; sys.exit();
+                print(bbx, resized.shape)
+                import sys
+                sys.exit()
         trackid += len(idimg)
 
     return imgs
 
-# def images2avhubert(pickedimg, imgs, bbxs, pre, video_size, device):
-    # imgs = emb_roi2im(pickedimg, imgs, bbxs, pre, device)
-
-def images2avhubert(pickedimg, imgs, pre, video_size, device):
-    imgs = emb_roi2im(pickedimg, imgs, pre, device)
+def images2avhubert(pickedimg, imgs, bbxs, pre, video_size, device):
+    imgs = emb_roi2im(pickedimg, imgs, bbxs, pre, device)
     processed_img = affine_trans(imgs, video_size).to(device)
     return processed_img
-
-

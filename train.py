@@ -28,7 +28,7 @@ from distributed import (
 )
 
 import os, random, cv2, argparse, subprocess
-
+cache = {}
 
 def init_logging(level=logging.INFO,
                  log_name='log/sys.log',
@@ -179,7 +179,7 @@ class Talklipdata(object):
         self.prob = 0.08
         self.length = 5
         self.image_size = args.image_size
-        # self.resizer = transforms.Resize([self.image_size, self.image_size])
+        self.resizer = transforms.Resize([self.image_size, self.image_size])
         
     def readtext(self, path):
         # with open(path, "r") as f:
@@ -203,14 +203,14 @@ class Talklipdata(object):
                 filtered.append(item)
         return filtered
 
-    # def croppatch(self, images, bbxs):
-    #     patch = np.zeros((images.shape[0], 224, 224, 3), dtype=np.float32)
-    #     width = images.shape[1]
-    #     for i, bbx in enumerate(bbxs):
-    #         bbx[2] = min(bbx[2], width)
-    #         bbx[3] = min(bbx[3], width)
-    #         patch[i] = cv2.resize(images[i, bbx[1]:bbx[3], bbx[0]:bbx[2], :], (self.crop_size, self.crop_size))
-    #     return patch
+    def croppatch(self, images, bbxs):
+        patch = np.zeros((images.shape[0], self.image_size, self.image_size, 3), dtype=np.float32)
+        width = images.shape[1]
+        for i, bbx in enumerate(bbxs):
+            bbx[2] = min(bbx[2], width)
+            bbx[3] = min(bbx[3], width)
+            patch[i] = cv2.resize(images[i, bbx[1]:bbx[3], bbx[0]:bbx[2], :], (self.image_size, self.image_size))
+        return patch
 
     def audio_visual_align(self, audio_feats, video_feats):
         diff = len(audio_feats) - len(video_feats)
@@ -249,7 +249,7 @@ class Talklipdata(object):
         while True:
             ret, frame = cap.read()
             if ret:
-                frame = cv2.resize(frame, (self.image_size,self.image_size), interpolation=cv2.INTER_CUBIC)
+                # frame = cv2.resize(frame, (self.image_size,self.image_size), interpolation=cv2.INTER_CUBIC)
                 # cv2.imwrite('resized.png', frame)
                 imgs.append(frame)
             else:
@@ -280,13 +280,29 @@ class Talklipdata(object):
                 bbxs: T*4
             """
             sample = self.datalists[idx]
-
+            iden, sentence_num = sample.split('/')[0], sample.split('/')[2]
+   
             video_path = '{}/{}/video.mp4'.format(self.data_root, sample)
-            # bbx_path = '{}/{}/.npy'.format(self.data_root, sample)
+            bbx_path = '{}/{}/DATAPROCESS/crop_head_info.npy'.format(self.data_root, iden, 'DATA')
+            sec_path = '{}/{}/DATAPROCESS/clip_second.txt'.format(self.data_root, iden, 'DATA')
             wav_path = '{}/{}/audio.wav'.format(self.data_root, sample)
             word_path = '{}/{}/content.npy'.format(self.data_root, sample)
+            
+            if iden in cache.keys():
+                dict_sec = cache[iden]
+            else:
+                dict_sec = {}
+                with open(sec_path, 'r') as file:
+                    for line in file.readlines():
+                        line = line.strip().split(',')
+                        k = line[0].strip()
+                        v = (int(line[0].strip()), int(line[1].strip()))
+                        dict_sec[k] = v
+                cache[iden] = dict_sec
+            start, len_seq = dict_sec[sentence_num]
 
-            # bbxs = np.load(bbx_path)
+            bbxs = np.load(bbx_path, allow_pickle=True)
+            bbxs = bbxs[start:start+len_seq]
             imgs = np.array(self.load_video(video_path)) # T*H*W*3
             volume = len(imgs)
             # print(wav_path)
@@ -318,10 +334,12 @@ class Talklipdata(object):
 
             # (N*5)
             pickedimg = poseidx
-            # poseImg = self.croppatch(imgs[poseidx], bbxs[poseidx])
-            # idImg = self.croppatch(imgs[ididx], bbxs[ididx])
-            poseImg = imgs[poseidx]
-            idImg = imgs[ididx]
+            
+            poseImg = self.croppatch(imgs[poseidx], bbxs[poseidx])
+            idImg = self.croppatch(imgs[ididx], bbxs[ididx])
+
+            # poseImg = imgs[poseidx]
+            # idImg = imgs[ididx]
             poseImg = torch.from_numpy(poseImg)
             idImg = torch.from_numpy(idImg)
 
@@ -339,8 +357,8 @@ class Talklipdata(object):
 
             pickedimg = torch.tensor(pickedimg)
 
-            # return inpImg, spectrogram, gtImg, trgt, volume, pickedimg, torch.from_numpy(imgs), torch.from_numpy(bbxs)
-            return inpImg, spectrogram, gtImg, trgt, volume, pickedimg, torch.from_numpy(imgs)
+            return inpImg, spectrogram, gtImg, trgt, volume, pickedimg, torch.from_numpy(imgs), torch.from_numpy(bbxs)
+            # return inpImg, spectrogram, gtImg, trgt, volume, pickedimg, torch.from_numpy(imgs)
         except:
             return self.__getitem__((idx+1) % self.__len__())
 
@@ -392,12 +410,12 @@ def collate_fn(dataBatch):
 
     targetBatch = collater_label([[data[3] for data in dataBatch]])
 
-    # bbxs = [data[7] for data in dataBatch]
+    bbxs = [data[7] for data in dataBatch]
     pickedimg = [data[5] for data in dataBatch]
     videoBatch = [data[6] for data in dataBatch]
 
-    # return inpBatch, audioBatch, audio_idx, gtBatch, targetBatch, padding_mask, pickedimg, videoBatch, bbxs
-    return inpBatch, audioBatch, audio_idx, gtBatch, targetBatch, padding_mask, pickedimg, videoBatch
+    return inpBatch, audioBatch, audio_idx, gtBatch, targetBatch, padding_mask, pickedimg, videoBatch, bbxs
+    # return inpBatch, audioBatch, audio_idx, gtBatch, targetBatch, padding_mask, pickedimg, videoBatch
 
 
 def save_sample_images(x, g, gt, global_step, checkpoint_dir):
@@ -486,8 +504,8 @@ def train(device, model, avhubert, criterion, data_loader, optimizer, args, glob
         losses = {'lip': 0, 'local_sync': 0, 'l1': 0, 'prec_g': 0, 'disc_real_g': 0, 'disc_fake_g': 0}
         prog_bar = tqdm(enumerate(data_loader['train']))
         oom_count = 0
-        # for step, (inpim, spectrogram, audio_idx, gtim, ((trgt, prev_trg), tlen, ntoken), padding_mask, vidx, videos, bbxs) in prog_bar:
-        for step, (inpim, spectrogram, audio_idx, gtim, ((trgt, prev_trg), tlen, ntoken), padding_mask, vidx, videos) in prog_bar:
+        for step, (inpim, spectrogram, audio_idx, gtim, ((trgt, prev_trg), tlen, ntoken), padding_mask, vidx, videos, bbxs) in prog_bar:
+        # for step, (inpim, spectrogram, audio_idx, gtim, ((trgt, prev_trg), tlen, ntoken), padding_mask, vidx, videos) in prog_bar:
             
             for key in model.keys():
                 model[key].train()
@@ -616,8 +634,8 @@ def eval_model(test_data_loader, avhubert, criterion, global_step, device, model
     n_correct, n_total = 0, 0
     losses = {'lip': 0, 'local_sync': 0, 'l1': 0, 'prec_g': 0, 'disc_real_g': 0, 'disc_fake_g': 0}
 
-    # for step, (x, spectrogram, audio_idx, gt, ((trgt, prev_trg), tlen, ntoken), padding_mask, vidx, videos, bbxs) in enumerate((test_data_loader)):
-    for step, (x, spectrogram, audio_idx, gt, ((trgt, prev_trg), tlen, ntoken), padding_mask, vidx, videos) in enumerate((test_data_loader)):
+    for step, (x, spectrogram, audio_idx, gt, ((trgt, prev_trg), tlen, ntoken), padding_mask, vidx, videos, bbxs) in enumerate((test_data_loader)):
+    # for step, (x, spectrogram, audio_idx, gt, ((trgt, prev_trg), tlen, ntoken), padding_mask, vidx, videos) in enumerate((test_data_loader)):
         model.eval()
         disc.eval()
         criterion.report_accuracy = True
@@ -641,8 +659,8 @@ def eval_model(test_data_loader, avhubert, criterion, global_step, device, model
         disc_fake_loss = F.binary_cross_entropy(pred, torch.zeros((len(pred), 1)).to(device))
         losses['disc_fake_g'] += disc_fake_loss.item()
 
-        # processed_img = images2avhubert(vidx, videos, bbxs, g, spectrogram.shape[2], device)
-        processed_img = images2avhubert(vidx, videos, g, spectrogram.shape[2], device)
+        processed_img = images2avhubert(vidx, videos, bbxs, g, spectrogram.shape[2], device)
+        # processed_img = images2avhubert(vidx, videos, g, spectrogram.shape[2], device)
         
         sample['net_input']['source']['video'] = processed_img
         sample['net_input']['source']['audio'] = None
@@ -696,8 +714,12 @@ def _load(checkpoint_path):
     return checkpoint
 
 
-def load_checkpoint(path, model, optimizer, logger=None, reset_optimizer=False, overwrite_global_states=True):
-    model = model.module.cpu()
+def load_checkpoint(distributed, path, model, optimizer, logger=None, reset_optimizer=False, overwrite_global_states=True):
+    if distributed:
+        model = model.module.cpu()
+    else:
+        model = model.cpu()
+        
     print("Load checkpoint from: {}".format(path))
     if logger is not None:
         logger.info("Load checkpoint from: {}".format(path))
@@ -781,13 +803,14 @@ if __name__ == "__main__":
 
     imGen = TalkLip(encoder, 768).to(device)
     imDisc = TalkLip_disc_qual().to(device)
-    imGen=torch.nn.parallel.DistributedDataParallel(imGen,
+    if args.distributed:
+    
+        imGen=torch.nn.parallel.DistributedDataParallel(imGen,
                                                     device_ids=[args.local_rank],
                                                     output_device=args.local_rank,
                                                     broadcast_buffers=False,
-                                                    find_unused_parameters=True
-                                                    )
-    imDisc=torch.nn.parallel.DistributedDataParallel(imDisc,
+                                                    find_unused_parameters=True)
+        imDisc=torch.nn.parallel.DistributedDataParallel(imDisc,
                                                     device_ids=[args.local_rank],
                                                     output_device=args.local_rank,
                                                     broadcast_buffers=False,
@@ -813,10 +836,10 @@ if __name__ == "__main__":
     
     global_step = 0
     if args.gen_checkpoint_path is not None:
-        global_step = load_checkpoint(args.gen_checkpoint_path, imGen, optimizer, logger)
+        global_step = load_checkpoint(args.distributed, args.gen_checkpoint_path, imGen, optimizer, logger)
 
     if args.disc_checkpoint_path is not None:
-        load_checkpoint(args.disc_checkpoint_path, imDisc, disc_optimizer, logger,
+        load_checkpoint(args.distributed, args.disc_checkpoint_path, imDisc, disc_optimizer, logger,
                         reset_optimizer=False, overwrite_global_states=False)
     if not os.path.exists(args.checkpoint_dir) and args.local_rank==0:
         os.makedirs(args.checkpoint_dir, exist_ok=True)

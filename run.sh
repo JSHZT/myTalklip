@@ -22,7 +22,7 @@ accumulation_steps=4
 gen_checkpoint_path=/root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/checkpoint_step000098000.pth
 disc_checkpoint_path=/root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/disc_checkpoint_step000098000.pth
 
-# debug="-m debugpy --listen 0.0.0.0:5678  --wait-for-client"
+debug="-m debugpy --listen 0.0.0.0:5678  --wait-for-client"
 # debug=''
 
 CUDA_VISIBLE_DEVICES=0,1,2,3 python -m torch.distributed.launch --nproc_per_node=4 train.py --distributed \
