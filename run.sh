@@ -3,7 +3,7 @@ WORKSPACE=/root/autodl-tmp/hzt/code/TalkLip
 file_list_dir=$WORKSPACE/data_list
 avhubert_path=$WORKSPACE/pretrain/lip_reading_expert.pt
 avhubert_root=/root/autodl-tmp/hzt/code/av_hubert
-checkpoint_dir=/root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus
+checkpoint_dir=/root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus_crop
 
 data_root=/root/autodl-tmp/hzt/data/talklip
 batch_size=1
@@ -18,11 +18,11 @@ perp_w=0.07
 n_epoch=100
 # gpu=1
 ckpt_interval=2000
-accumulation_steps=4
-gen_checkpoint_path=/root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/checkpoint_step000098000.pth
-disc_checkpoint_path=/root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/disc_checkpoint_step000098000.pth
+accumulation_steps=8
+# gen_checkpoint_path=/root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/checkpoint_step000098000.pth
+# disc_checkpoint_path=/root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/disc_checkpoint_step000098000.pth
 
-debug="-m debugpy --listen 0.0.0.0:5678  --wait-for-client"
+# debug="-m debugpy --listen 0.0.0.0:5678  --wait-for-client"
 # debug=''
 
 CUDA_VISIBLE_DEVICES=0,1,2,3 python -m torch.distributed.launch --nproc_per_node=4 train.py --distributed \
@@ -40,9 +40,9 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 python -m torch.distributed.launch --nproc_per_node
                 --batch_size $batch_size \
                 --num_worker $num_worker \
                 --image_size $image_size \
-                --accumulation_steps $accumulation_steps \
-                --gen_checkpoint_path $gen_checkpoint_path \
-                --disc_checkpoint_path $disc_checkpoint_path 
+                --accumulation_steps $accumulation_steps 
+                # --gen_checkpoint_path $gen_checkpoint_path \
+                # --disc_checkpoint_path $disc_checkpoint_path 
 
                 # --gpu $gpu \
 

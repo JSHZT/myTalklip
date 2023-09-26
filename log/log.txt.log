@@ -1249,3 +1249,79 @@
 2023-09-21 17:58:59,775 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/checkpoint_step000098000.pth
 2023-09-21 17:58:59,826 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/disc_checkpoint_step000098000.pth
 2023-09-21 17:58:59,948 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/disc_checkpoint_step000098000.pth
+2023-09-26 11:05:38,814 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/checkpoint_step000098000.pth
+2023-09-26 11:05:39,677 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/checkpoint_step000098000.pth
+2023-09-26 11:05:39,722 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/disc_checkpoint_step000098000.pth
+2023-09-26 11:05:39,833 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/disc_checkpoint_step000098000.pth
+2023-09-26 11:34:38,758 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/checkpoint_step000098000.pth
+2023-09-26 11:34:39,596 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/checkpoint_step000098000.pth
+2023-09-26 11:34:39,644 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/disc_checkpoint_step000098000.pth
+2023-09-26 11:34:39,754 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/disc_checkpoint_step000098000.pth
+2023-09-26 11:41:23,714 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/checkpoint_step000098000.pth
+2023-09-26 11:41:24,477 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/checkpoint_step000098000.pth
+2023-09-26 11:41:24,519 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/disc_checkpoint_step000098000.pth
+2023-09-26 11:41:24,608 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/disc_checkpoint_step000098000.pth
+2023-09-26 11:42:31,196 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/checkpoint_step000098000.pth
+2023-09-26 11:42:31,988 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/checkpoint_step000098000.pth
+2023-09-26 11:42:32,031 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/disc_checkpoint_step000098000.pth
+2023-09-26 11:42:32,121 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/disc_checkpoint_step000098000.pth
+2023-09-26 11:43:28,843 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/checkpoint_step000098000.pth
+2023-09-26 11:43:29,680 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/checkpoint_step000098000.pth
+2023-09-26 11:43:29,722 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/disc_checkpoint_step000098000.pth
+2023-09-26 11:43:29,823 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/disc_checkpoint_step000098000.pth
+2023-09-26 11:49:14,234 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/checkpoint_step000098000.pth
+2023-09-26 11:49:15,029 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/checkpoint_step000098000.pth
+2023-09-26 11:49:15,079 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/disc_checkpoint_step000098000.pth
+2023-09-26 11:49:15,180 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/disc_checkpoint_step000098000.pth
+2023-09-26 11:56:22,873 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/checkpoint_step000098000.pth
+2023-09-26 11:56:23,715 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/checkpoint_step000098000.pth
+2023-09-26 11:56:23,757 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/disc_checkpoint_step000098000.pth
+2023-09-26 11:56:23,861 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/disc_checkpoint_step000098000.pth
+2023-09-26 12:02:31,898 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/checkpoint_step000098000.pth
+2023-09-26 12:02:32,775 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/checkpoint_step000098000.pth
+2023-09-26 12:02:32,817 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/disc_checkpoint_step000098000.pth
+2023-09-26 12:02:32,919 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/disc_checkpoint_step000098000.pth
+2023-09-26 12:05:37,171 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/checkpoint_step000098000.pth
+2023-09-26 12:05:38,027 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/checkpoint_step000098000.pth
+2023-09-26 12:05:38,070 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/disc_checkpoint_step000098000.pth
+2023-09-26 12:05:38,174 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/disc_checkpoint_step000098000.pth
+2023-09-26 12:11:09,500 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/checkpoint_step000098000.pth
+2023-09-26 12:11:10,320 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/checkpoint_step000098000.pth
+2023-09-26 12:11:10,362 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/disc_checkpoint_step000098000.pth
+2023-09-26 12:11:10,465 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/disc_checkpoint_step000098000.pth
+2023-09-26 14:22:49,419 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/checkpoint_step000098000.pth
+2023-09-26 14:22:50,211 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/checkpoint_step000098000.pth
+2023-09-26 14:22:50,256 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/disc_checkpoint_step000098000.pth
+2023-09-26 14:22:50,360 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/disc_checkpoint_step000098000.pth
+2023-09-26 14:24:16,519 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/checkpoint_step000098000.pth
+2023-09-26 14:24:17,263 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/checkpoint_step000098000.pth
+2023-09-26 14:24:17,305 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/disc_checkpoint_step000098000.pth
+2023-09-26 14:24:17,394 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/disc_checkpoint_step000098000.pth
+2023-09-26 14:55:20,470 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/checkpoint_step000098000.pth
+2023-09-26 14:55:21,300 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/checkpoint_step000098000.pth
+2023-09-26 14:55:21,343 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/disc_checkpoint_step000098000.pth
+2023-09-26 14:55:21,442 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/disc_checkpoint_step000098000.pth
+2023-09-26 14:56:04,006 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/checkpoint_step000098000.pth
+2023-09-26 14:56:04,826 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/checkpoint_step000098000.pth
+2023-09-26 14:56:04,875 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/disc_checkpoint_step000098000.pth
+2023-09-26 14:56:04,980 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/disc_checkpoint_step000098000.pth
+2023-09-26 14:59:04,590 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/checkpoint_step000098000.pth
+2023-09-26 14:59:05,589 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/checkpoint_step000098000.pth
+2023-09-26 14:59:05,631 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/disc_checkpoint_step000098000.pth
+2023-09-26 14:59:05,732 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/disc_checkpoint_step000098000.pth
+2023-09-26 15:01:14,053 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/checkpoint_step000098000.pth
+2023-09-26 15:01:14,805 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/checkpoint_step000098000.pth
+2023-09-26 15:01:14,851 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/disc_checkpoint_step000098000.pth
+2023-09-26 15:01:14,950 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/disc_checkpoint_step000098000.pth
+2023-09-26 15:02:10,217 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/checkpoint_step000098000.pth
+2023-09-26 15:02:10,958 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/checkpoint_step000098000.pth
+2023-09-26 15:02:11,000 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/disc_checkpoint_step000098000.pth
+2023-09-26 15:02:11,094 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/disc_checkpoint_step000098000.pth
+2023-09-26 15:11:05,856 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/checkpoint_step000098000.pth
+2023-09-26 15:11:06,690 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/checkpoint_step000098000.pth
+2023-09-26 15:11:06,733 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/disc_checkpoint_step000098000.pth
+2023-09-26 15:11:06,837 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/disc_checkpoint_step000098000.pth
+2023-09-26 15:12:13,545 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/checkpoint_step000098000.pth
+2023-09-26 15:12:14,381 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/checkpoint_step000098000.pth
+2023-09-26 15:12:14,424 - root - INFO - Load checkpoint from: /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/disc_checkpoint_step000098000.pth
+2023-09-26 15:12:14,525 - root - INFO - Load optimizer state from /root/autodl-tmp/hzt/exp/TalkLip/size_256_multigpus/disc_checkpoint_step000098000.pth

@@ -3,7 +3,7 @@ from tqdm import tqdm
 from inf_test import parse_filelist
 from models.talklip import TalkLip, TalkLip_disc_qual
 from torchvision import transforms
-
+import numpy as np
 import torch
 import logging
 import numpy as np
@@ -209,7 +209,7 @@ class Talklipdata(object):
         for i, bbx in enumerate(bbxs):
             bbx[2] = min(bbx[2], width)
             bbx[3] = min(bbx[3], width)
-            patch[i] = cv2.resize(images[i, bbx[1]:bbx[3], bbx[0]:bbx[2], :], (self.image_size, self.image_size))
+            patch[i] = cv2.resize(images[i, int(bbx[1]):int(bbx[3]), int(bbx[0]):int(bbx[2]), :], (self.image_size, self.image_size))
         return patch
 
     def audio_visual_align(self, audio_feats, video_feats):
@@ -242,6 +242,16 @@ class Talklipdata(object):
         audio_feats = logfbank(wav_data, samplerate=sample_rate).astype(np.float32)  # [T, F]
         audio_feats = stacker(audio_feats, self.stack_order_audio)  # [T/stack_order_audio, F*stack_order_audio]
         return audio_feats
+    
+    def bbox_extend(self,bbox):
+        padding_size=10
+        bbox[:,0]=bbox[:,0]-padding_size
+        bbox[:,1]=bbox[:,1]-padding_size
+
+        bbox[:,2]=bbox[:,2]+padding_size
+        bbox[:,3]=bbox[:,3]+padding_size
+        return bbox
+
 
     def load_video(self, path):
         cap = cv2.VideoCapture(path)
@@ -255,7 +265,6 @@ class Talklipdata(object):
             else:
                 break
         cap.release()
-        # exit()
         
         return imgs
 
@@ -296,13 +305,23 @@ class Talklipdata(object):
                     for line in file.readlines():
                         line = line.strip().split(',')
                         k = line[0].strip()
-                        v = (int(line[0].strip()), int(line[1].strip()))
+                        v = (int(line[1].strip()), int(line[2].strip()))
                         dict_sec[k] = v
                 cache[iden] = dict_sec
             start, len_seq = dict_sec[sentence_num]
+            
+            info = np.load(bbx_path, allow_pickle=True).item()
+            detec_coord = info['detec_coord']
+            crop_coord = info['crop_coord']
+            bbox = np.zeros(crop_coord.shape)
 
-            bbxs = np.load(bbx_path, allow_pickle=True)
-            bbxs = bbxs[start:start+len_seq]
+            bbox[:, 0] = detec_coord[:, 0] - crop_coord[:, 0]
+            bbox[:, 2] = detec_coord[:, 2] - crop_coord[:, 0]
+            bbox[:, 1] = detec_coord[:, 1] - crop_coord[:, 1]
+            bbox[:, 3] = detec_coord[:, 3] - crop_coord[:, 1]
+            bbxs=self.bbox_extend(bbox)
+
+            bbxs = bbxs[start:start+len_seq] # T*4
             imgs = np.array(self.load_video(video_path)) # T*H*W*3
             volume = len(imgs)
             # print(wav_path)
@@ -334,12 +353,9 @@ class Talklipdata(object):
 
             # (N*5)
             pickedimg = poseidx
-            
-            poseImg = self.croppatch(imgs[poseidx], bbxs[poseidx])
+            poseImg = self.croppatch(imgs[poseidx], bbxs[poseidx]) # len(poseidx)*H*W*C
             idImg = self.croppatch(imgs[ididx], bbxs[ididx])
-
-            # poseImg = imgs[poseidx]
-            # idImg = imgs[ididx]
+            
             poseImg = torch.from_numpy(poseImg)
             idImg = torch.from_numpy(idImg)
 
@@ -354,11 +370,9 @@ class Talklipdata(object):
 
             idImg = self.im_preprocess(idImg)
             inpImg = torch.cat([poseImg, idImg], axis=1)
-
             pickedimg = torch.tensor(pickedimg)
-
             return inpImg, spectrogram, gtImg, trgt, volume, pickedimg, torch.from_numpy(imgs), torch.from_numpy(bbxs)
-            # return inpImg, spectrogram, gtImg, trgt, volume, pickedimg, torch.from_numpy(imgs)
+
         except:
             return self.__getitem__((idx+1) % self.__len__())
 
@@ -505,11 +519,10 @@ def train(device, model, avhubert, criterion, data_loader, optimizer, args, glob
         prog_bar = tqdm(enumerate(data_loader['train']))
         oom_count = 0
         for step, (inpim, spectrogram, audio_idx, gtim, ((trgt, prev_trg), tlen, ntoken), padding_mask, vidx, videos, bbxs) in prog_bar:
-        # for step, (inpim, spectrogram, audio_idx, gtim, ((trgt, prev_trg), tlen, ntoken), padding_mask, vidx, videos) in prog_bar:
             
             for key in model.keys():
                 model[key].train()
-
+            
             criterion.report_accuracy = False
 
             inpim, gtim = inpim.to(device), gtim.to(device)
@@ -521,16 +534,16 @@ def train(device, model, avhubert, criterion, data_loader, optimizer, args, glob
 
             try:
                 syntim, enc_audio = model['gen'](sample, inpim, audio_idx, spectrogram.shape[0])              # g: T*3*H*W
-
+                # print(2222)
                 if lip_train:
-                    processed_img = images2avhubert(vidx, videos, syntim, spectrogram.shape[2], device)
+                    processed_img = images2avhubert(vidx, videos, bbxs, syntim, spectrogram.shape[2], device)
                     sample['net_input']['source']['video'] = processed_img
                     sample['net_input']['source']['audio'] = None
                     lip_loss, sample_size, logs, enc_out = criterion(avhubert, sample)
                     losses['lip'] += lip_loss.item()
                     if args.cont_w > 0:
                         pickedVid, pickedAud = local_sync_loss(audio_idx, enc_audio, enc_out['encoder_out'])
-                        local_sync = model['gen'].sync_net(pickedVid, pickedAud)
+                        local_sync = model['gen'].module.sync_net(pickedVid, pickedAud)
                         losses['local_sync'] += local_sync.item()
                     else:
                         local_sync = 0.

@@ -209,10 +209,10 @@ def emb_roi2im(pickedimg, imgs, bbxs, pre, device):
             bbx = bbxs[i][idimg[j]]
             if bbx[2] > width: bbx[2] = width
             if bbx[3] > width: bbx[3] = width
-            resize2ori = transforms.Resize([bbx[3] - bbx[1], bbx[2] - bbx[0]])
+            resize2ori = transforms.Resize([int(bbx[3]) - int(bbx[1]), int(bbx[2]) - int(bbx[0])])
             try:
                 resized = resize2ori(pre[trackid + j] * 255.).permute(1, 2, 0)
-                imgs[i][idimg[j]][bbx[1]:bbx[3], bbx[0]:bbx[2], :] = resized
+                imgs[i][idimg[j]][int(bbx[1]):int(bbx[3]), int(bbx[0]):int(bbx[2]), :] = resized
             except:
                 print(bbx, resized.shape)
                 import sys
